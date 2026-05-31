@@ -1,152 +1,281 @@
 from pathlib import Path
 import json
+import random
 import pygame
 import customtkinter as ctk
 from mutagen import File
+import os
 
-# --------------------
-# Setup
-# --------------------
+# =========================
+# INIT
+# =========================
 
 pygame.mixer.init()
 
-script_dir = Path(__file__).parent
-audio_folder = script_dir / "audio"
-json_file = script_dir / "audio_index.json"
+ctk.set_appearance_mode("dark")
+ctk.set_default_color_theme("blue")
 
-with open(json_file, "r", encoding="utf-8") as f:
+BASE = Path(__file__).parent
+AUDIO = BASE / "audio"
+DATA_FILE = BASE / "audio_index.json"
+SETTINGS_FILE = BASE / "settings.json"
+PLAYLIST_FILE = BASE / "playlists.json"
+
+# =========================
+# LOAD SONGS
+# =========================
+
+with open(DATA_FILE, "r", encoding="utf-8") as f:
     data = json.load(f)
 
-songs = []
+songs = [
+    {
+        "name": Path(x).stem,
+        "path": AUDIO / x
+    }
+    for x in data["files"]
+]
 
-for file_path in data["files"]:
-    path = Path(file_path)
+# =========================
+# SETTINGS
+# =========================
 
-    songs.append({
-        "name": path.stem,
-        "path": audio_folder / file_path
-    })
+def load_settings():
+    if SETTINGS_FILE.exists():
+        return json.load(open(SETTINGS_FILE))
+    return {"volume": 0.7, "shuffle": False, "repeat": "off"}
 
-# --------------------
-# UI
-# --------------------
+settings = load_settings()
 
-ctk.set_appearance_mode("dark")
-app = ctk.CTk()
-app.geometry("700x500")
-app.title("Music Player")
+def save_settings():
+    json.dump(settings, open(SETTINGS_FILE, "w"), indent=2)
 
-current_song = None
-song_length = 0
+# =========================
+# STATE
+# =========================
+
+current_index = 0
+paused = False
 dragging = False
+queue = []
 
-# --------------------
-# Functions
-# --------------------
+shuffle = settings["shuffle"]
+repeat = settings["repeat"]
 
-def format_time(seconds):
-    mins = int(seconds // 60)
-    secs = int(seconds % 60)
-    return f"{mins:02}:{secs:02}"
+song_length = 0
+current_song = None
 
+# =========================
+# APP
+# =========================
+
+app = ctk.CTk()
+app.geometry("1100x700")
+app.title("Advanced Music Player")
+
+main = ctk.CTkFrame(app)
+main.pack(fill="both", expand=True)
+
+# =========================
+# HELPERS
+# =========================
+
+def format_time(s):
+    m = int(s // 60)
+    s = int(s % 60)
+    return f"{m:02}:{s:02}"
+
+# =========================
+# CORE PLAYER
+# =========================
 
 def play_song(song):
-    global current_song, song_length
+    global current_song, song_length, paused
 
     current_song = song
+    paused = False
 
     pygame.mixer.music.load(song["path"])
     pygame.mixer.music.play()
 
-    audio_info = File(song["path"])
-    song_length = audio_info.info.length
+    try:
+        song_length = File(song["path"]).info.length
+    except:
+        song_length = 0
 
     song_label.configure(text=song["name"])
-    duration_label.configure(
-        text=f"00:00 / {format_time(song_length)}"
-    )
+    progress.configure(to=max(song_length, 1))
+    progress.set(0)
 
+    play_btn.configure(text="⏸")
 
-def select_song(name):
-    for song in songs:
-        if song["name"] == name:
-            play_song(song)
-            break
+def play_index(i):
+    global current_index
+    current_index = i
+    play_song(songs[i])
 
+def next_song():
+    global current_index
 
-def update_progress():
+    if queue:
+        play_song(queue.pop(0))
+        return
+
+    if repeat == "one":
+        play_song(songs[current_index])
+        return
+
+    if shuffle:
+        current_index = random.randint(0, len(songs)-1)
+    else:
+        current_index += 1
+        if current_index >= len(songs):
+            if repeat == "all":
+                current_index = 0
+            else:
+                return
+
+    play_song(songs[current_index])
+
+def prev_song():
+    global current_index
+    current_index = max(0, current_index - 1)
+    play_song(songs[current_index])
+
+def toggle_play():
+    global paused
+
+    if not current_song:
+        return
+
+    if paused:
+        pygame.mixer.music.unpause()
+        play_btn.configure(text="⏸")
+    else:
+        pygame.mixer.music.pause()
+        play_btn.configure(text="▶")
+
+    paused = not paused
+
+def seek(value):
+    pygame.mixer.music.play(start=float(value))
+
+def set_volume(v):
+    settings["volume"] = float(v)
+    pygame.mixer.music.set_volume(float(v))
+    save_settings()
+
+def toggle_shuffle():
+    global shuffle
+    shuffle = not shuffle
+    settings["shuffle"] = shuffle
+    save_settings()
+
+def toggle_repeat():
+    global repeat
+    modes = ["off", "all", "one"]
+    repeat = modes[(modes.index(repeat)+1)%3]
+    settings["repeat"] = repeat
+    repeat_btn.configure(text=f"🔁 {repeat}")
+    save_settings()
+
+# =========================
+# UI UPDATE LOOP
+# =========================
+
+def update():
     global dragging
 
     if pygame.mixer.music.get_busy() and not dragging:
-        pos = pygame.mixer.music.get_pos() / 1000
-
-        progress_slider.set(pos)
-
-        duration_label.configure(
+        pos = pygame.mixer.music.get_pos()/1000
+        progress.set(pos)
+        time_label.configure(
             text=f"{format_time(pos)} / {format_time(song_length)}"
         )
 
-    app.after(500, update_progress)
+    elif current_song and not pygame.mixer.music.get_busy():
+        next_song()
 
+    app.after(500, update)
 
-def seek(value):
-    global dragging
+# =========================
+# UI
+# =========================
 
-    if current_song is None:
-        return
+left = ctk.CTkFrame(main, width=300)
+left.pack(side="left", fill="y")
 
-    pygame.mixer.music.play(start=float(value))
-    dragging = False
+right = ctk.CTkFrame(main)
+right.pack(side="left", fill="both", expand=True)
 
+search = ctk.CTkEntry(left, placeholder_text="Search")
+search.pack(fill="x", padx=10, pady=10)
 
-def slider_pressed(event):
-    global dragging
-    dragging = True
+song_buttons = []
 
+def build_list(q=""):
+    for b in song_buttons:
+        b.destroy()
+    song_buttons.clear()
 
-# --------------------
-# Layout
-# --------------------
+    for i, s in enumerate(songs):
+        if q.lower() not in s["name"].lower():
+            continue
 
-left_frame = ctk.CTkFrame(app)
-left_frame.pack(side="left", fill="both", expand=True, padx=10, pady=10)
+        b = ctk.CTkButton(
+            left,
+            text=s["name"],
+            command=lambda i=i: play_index(i)
+        )
+        b.pack(fill="x", padx=5, pady=2)
+        song_buttons.append(b)
 
-song_label = ctk.CTkLabel(
-    app,
-    text="No Song Selected",
-    font=("Arial", 20)
-)
-song_label.pack(pady=(20, 10))
+search.bind("<KeyRelease>", lambda e: build_list(search.get()))
 
-duration_label = ctk.CTkLabel(
-    app,
-    text="00:00 / 00:00"
-)
-duration_label.pack()
+song_label = ctk.CTkLabel(right, text="No Song", font=("Arial", 24))
+song_label.pack(pady=20)
 
-progress_slider = ctk.CTkSlider(
-    app,
-    from_=0,
-    to=300,
-    command=seek
-)
-progress_slider.pack(fill="x", padx=20, pady=10)
+time_label = ctk.CTkLabel(right, text="00:00 / 00:00")
+time_label.pack()
 
-progress_slider.bind("<ButtonPress-1>", slider_pressed)
+progress = ctk.CTkSlider(right, from_=0, to=1, command=seek)
+progress.pack(fill="x", padx=50, pady=10)
 
-# Song list
+progress.bind("<ButtonPress-1>", lambda e: None)
 
-for song in songs:
-    btn = ctk.CTkButton(
-        left_frame,
-        text=song["name"],
-        command=lambda n=song["name"]: select_song(n)
-    )
-    btn.pack(fill="x", pady=2)
+controls = ctk.CTkFrame(right)
+controls.pack(pady=20)
 
-# --------------------
-# Start
-# --------------------
+ctk.CTkButton(controls, text="⏮", command=prev_song).grid(row=0, column=0, padx=5)
+play_btn = ctk.CTkButton(controls, text="▶", command=toggle_play)
+play_btn.grid(row=0, column=1, padx=5)
+ctk.CTkButton(controls, text="⏭", command=next_song).grid(row=0, column=2, padx=5)
 
-update_progress()
+shuffle_btn = ctk.CTkButton(controls, text="🔀", command=toggle_shuffle)
+shuffle_btn.grid(row=0, column=3, padx=5)
+
+repeat_btn = ctk.CTkButton(controls, text="🔁 off", command=toggle_repeat)
+repeat_btn.grid(row=0, column=4, padx=5)
+
+vol = ctk.CTkSlider(right, from_=0, to=1, command=set_volume)
+vol.set(settings["volume"])
+vol.pack(fill="x", padx=100, pady=10)
+
+# =========================
+# SHORTCUTS
+# =========================
+
+app.bind("<space>", lambda e: toggle_play())
+app.bind("<Right>", lambda e: next_song())
+app.bind("<Left>", lambda e: prev_song())
+
+# =========================
+# START
+# =========================
+
+build_list()
+update()
+
+pygame.mixer.music.set_volume(settings["volume"])
+
 app.mainloop()
