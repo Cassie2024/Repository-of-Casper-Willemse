@@ -1,0 +1,5 @@
+Delphi code was written over years starting from highschool. the backup 2.0 app i developed to help me backup my game saves i used it to copy over my save to a backup folder because loadshedding corrupted my saves so i made sure i always had a backup and update the backup as i play, so it ran in the background copying my saves and then if my saves got corrupted i had a button that would automatically copy it to my games save location so i can access it again ingame to go from where i left off.
+
+the music player i developed as my Gr11 project the music player 2.0 is just a simpler version.
+
+the Gcode viewer i used to visualize the layerlines of my 3d print i used the gcode file produced by my slicer software and used the panda library for python to plot and draw each line which shows me what the final product will look like and where all the movement lines are.
