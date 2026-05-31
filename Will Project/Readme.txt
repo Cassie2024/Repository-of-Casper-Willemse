@@ -1,0 +1,1 @@
+this is just a Realestate website developed by me of which the theme is fantasy and showcases creativity. i Taught myself php in order to host it because it was a requirement to host the project to complete the project however it is not hosted anymore.

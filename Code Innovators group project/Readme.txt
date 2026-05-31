@@ -1,0 +1,1 @@
+This website was part of a formative assessment from my campus which we were instructed to work as a group. all of us took different aspects of the project to do. i coded 2 of the pages and implementing the file sharing and downloading from the server. the website isn't hosted anymore but the code is still available on his repository as are all the project documents.
