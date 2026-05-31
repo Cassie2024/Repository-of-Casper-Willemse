@@ -1,0 +1,192 @@
+.about-description{
+    padding-top: 30px;
+    width: 40%;
+    text-align: center;
+    margin: auto;
+}
+
+.about-description h2{
+    padding-bottom: 10px;
+}
+
+.about-images{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-card{
+    width: 325px;
+    border-radius: 50%;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+    margin-top: 40px;
+}
+
+.profile-image {
+    position: relative;
+}
+
+.profile-image img {
+    width: 100%;
+    height: auto;
+}
+
+.image-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 37%; /* Adjust based on where you want to obscure */
+    background-color: rgba(22, 3, 48, 0.7); /* Brown overlay */
+}
+
+.name{
+    background: linear-gradient(to right, #8e30c4, #c62be6);
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: bold;
+    font-size: 20px !important;
+}
+
+.profile-info p{
+    width: 70%;
+    font-size: 18px;
+    margin: auto;
+    padding-top: 2px;
+}
+
+.prof-top {
+    margin-top: -150px;
+}
+
+.linkedin{
+    display: flex;
+    margin-left: 280px;
+    margin-top: -20px;
+}
+
+.linked-button{
+    margin:  0 89px;
+    padding-bottom: 100px;
+}
+
+#linked{
+    border-radius: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 20px;
+    width: 150px;
+}
+
+.b-top{
+    margin-top: -150px;
+    margin-right: -15px;
+}
+
+.b-bot{
+    margin-top: 50px;
+}
+
+.information{
+    display: flex;
+}
+
+.info-container{
+    color: #fff;
+    padding: 50px;
+    width: 700px;
+    height: 425px;
+    background: rgba(0, 0, 0, 0.26);
+    border-radius: 35px;
+}
+
+.info-container h1{
+    font-size: 30px;
+    padding-bottom: 25px;
+}
+
+.info-container h2{
+    font-size: 30px;
+    padding-bottom: 20px;
+    width: 325px;
+}
+
+.i1, .i2{
+    margin-bottom: 600px;
+    margin-left: 150px;
+}
+
+.i3, .i4{
+    margin-top: 600px;
+    margin-right: 150px;
+    margin-bottom: 50px;
+}
+
+.i1{
+    margin-left: 175px;
+}
+
+.i2{
+    margin-top: 250px;
+}
+
+.i3{
+    margin-left: -1550px;
+}
+
+.i4{
+    height: 400px;
+    margin-top: 850px;
+}
+
+@media screen and (max-width: 768px) {
+    .about-description {
+        width: 90%;
+    }
+
+    .about-images {
+        flex-direction: column;
+    }
+
+    .profile-card {
+        width: 80%;
+        max-width: 325px;
+        margin: 20px auto;
+    }
+
+    .linkedin {
+        margin-left: 0;
+        justify-content: center;
+    }
+
+    .linked-button {
+        margin: 0;
+        padding-bottom: 20px;
+    }
+
+    #linked {
+        width: 120px;
+        font-size: 16px;
+        padding: 15px;
+    }
+
+    .information {
+        flex-direction: column;
+    }
+
+    .info-container {
+        width: 90%;
+        height: auto;
+        margin: 20px auto;
+    }
+
+    .info-container h2 {
+        width: 100%;
+    }
+
+    .i1, .i2, .i3, .i4 {
+        margin: 20px auto;
+    }
+}

@@ -1,0 +1,34 @@
+{
+  "Arcadia": {
+    "Quadrants": {
+      "North Quadrant": {
+        "Sectors": [
+          "Celestial City",
+          "Starlight City",
+          "Nova City"
+        ]
+      },
+      "East Quadrant": {
+        "Sectors": [
+          "Aurora City",
+          "Zenith City",
+          "Horizon City"
+        ]
+      },
+      "South Quadrant": {
+        "Sectors": [
+          "Nebula City",
+          "Comet City",
+          "Quasar City"
+        ]
+      },
+      "West Quadrant": {
+        "Sectors": [
+          "Galaxy City",
+          "Eclipse City",
+          "Titan City"
+        ]
+      }
+    }
+  }
+}

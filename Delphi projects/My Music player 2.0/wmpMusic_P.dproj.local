@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2020/09/18 07:27:25.000.825,=C:\Users\Mystic\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2020/09/18 07:28:17.000.349,C:\Users\Mystic\Desktop\My Music player 2.0\wmpMusic_U.dfm=C:\Users\Mystic\Documents\Embarcadero\Studio\Projects\Unit2.dfm</Transaction>
+    <Transaction>2020/09/18 07:28:17.000.349,C:\Users\Mystic\Desktop\My Music player 2.0\wmpMusic_U.pas=C:\Users\Mystic\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2020/09/18 07:28:39.000.456,C:\Users\Mystic\Desktop\My Music player 2.0\wmpMusic_P.dproj=C:\Users\Mystic\Documents\Embarcadero\Studio\Projects\Project2.dproj</Transaction>
+    <Transaction>2020/09/18 07:32:38.000.375,=C:\Users\Mystic\Desktop\My Music player 2.0\Unit1.pas</Transaction>
+    <Transaction>2020/09/18 07:38:34.000.722,C:\Users\Mystic\Desktop\My Music player 2.0\dmMusicPlayer_U.pas=C:\Users\Mystic\Desktop\My Music player 2.0\Unit1.pas</Transaction>
+    <Transaction>2020/09/18 07:38:34.000.722,C:\Users\Mystic\Desktop\My Music player 2.0\dmMusicPlayer_U.dfm=C:\Users\Mystic\Desktop\My Music player 2.0\Unit1.dfm</Transaction>
+    <Transaction>2020/09/18 11:33:26.000.736,=C:\Users\Mystic\Desktop\My Music player 2.0\Unit1.pas</Transaction>
+    <Transaction>2020/09/18 11:49:13.000.726,C:\Users\Mystic\Desktop\My Music player 2.0\Add_Delete_U.pas=C:\Users\Mystic\Desktop\My Music player 2.0\Unit1.pas</Transaction>
+    <Transaction>2020/09/18 11:49:13.000.726,C:\Users\Mystic\Desktop\My Music player 2.0\Add_Delete_U.dfm=C:\Users\Mystic\Desktop\My Music player 2.0\Unit1.dfm</Transaction>
+    <Transaction>2020/09/20 15:26:36.000.413,=C:\Users\Mystic\Desktop\My Music player 2.0\Unit1.pas</Transaction>
+    <Transaction>2020/09/20 15:31:13.000.174,C:\Users\Mystic\Desktop\My Music player 2.0\DeleteSong_U.pas=C:\Users\Mystic\Desktop\My Music player 2.0\Unit1.pas</Transaction>
+    <Transaction>2020/09/20 15:31:13.000.174,C:\Users\Mystic\Desktop\My Music player 2.0\DeleteSong_U.dfm=C:\Users\Mystic\Desktop\My Music player 2.0\Unit1.dfm</Transaction>
+  </Transactions>
+</BorlandProject>

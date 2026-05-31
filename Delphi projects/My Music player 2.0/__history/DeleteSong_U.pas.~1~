@@ -1,0 +1,27 @@
+unit DeleteSong_U;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, dmMusicPlayer_U, Data.DB, Vcl.ExtCtrls,
+  Vcl.Grids, Vcl.DBGrids;
+
+type
+  TfrmDelete = class(TForm)
+    DBGrid1: TDBGrid;
+    Panel1: TPanel;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmDelete: TfrmDelete;
+
+implementation
+
+{$R *.dfm}
+
+end.

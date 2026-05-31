@@ -1,0 +1,442 @@
+/* CONTACT US PAGE CSS */
+
+.laptop-body {
+    max-width: 100vw;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-image: url("ContatctUs.jpg");
+    background-size: cover;
+    backdrop-filter: blur(5px);
+    font-family: Arial;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    width: 100%;
+    height: 1000px;
+    perspective: 1000px; /* Add perspective to the body */
+  }
+/*grid item*/
+.grid-Item {
+    display: flex;
+    justify-content: center; /* Center the content horizontally */
+    align-items: center; /* Center the content vertically */
+    text-align: center;
+    background-color: black;
+    border-radius: 5px; /* Optional: round the corners of each item */
+    box-sizing: border-box;
+    margin: auto; /* Ensure grid items are centered */
+}
+
+/*monitor / desktop*/
+.grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(4, 1fr); /* Adjust number of rows as needed */
+    gap: 10px; /* Add some spacing between the items */
+    justify-content: center; /* Center the grid horizontally */
+    align-content: center; /* Center the grid vertically */
+    height: 100%; /* Make sure the grid fills the monitor */
+    width: 100%; /* Make sure the grid fills the monitor */
+    background-color: black;
+    background-image: url("../Assets/Images/CTULogo.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100px;
+}
+
+.grid-Item img {
+    max-width: 100%; /* Ensure the image fits within the grid item */
+    max-height: 100%; /* Ensure the image fits within the grid item */
+    object-fit: contain; /* Make sure the image scales without distortion */
+}
+.laptop {
+    position: relative;
+    width: 280px;
+    left: 320px;
+    height: 300px;
+    animation: enlarge 2s forwards; /* Change to enlarge animation */
+}
+
+.laptop .monitor {
+    position: absolute;
+    border: 5px solid #4d4d4d;
+    border-radius: 2px;
+    height: 150px;
+    background: #ffffff;
+    left: 14px;
+    right: 14px;
+    top: 36px;
+    transform: perspective(1000px) rotateX(15deg);
+    animation: open-laptop-monitor 2s forwards; /* Animate monitor opening */
+}
+
+.laptop .monitor .monitor-body {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 5px solid #000000;
+    background: #262626;
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    overflow: hidden; /* Ensure that overflow is hidden */
+    padding: 5px; /* Add padding if needed */
+}
+
+
+.laptop .bottom_part {
+    margin-bottom: 14px;
+    position: absolute;
+    border: 5px solid #262626;
+    border-radius: 2px;
+    height: 154px;
+    background: #262626;
+    left: 0px;
+    right: 0px;
+    bottom: 2px;
+    transform: perspective(1000px) rotateX(72deg);
+    animation: open-laptop-bottom-part 2s forwards; /* Animate bottom part opening */
+}
+
+.laptop .keyboard {
+    padding: 7px 5px;
+    background: #4d4d4d;
+    margin: 5px;
+}
+
+.laptop .keyboard img {
+    width: 100%;
+}
+
+.laptop .touchpad {
+    background: #4d4d4d;
+    width: 45px;
+    padding: 10px;
+    height: 30px;
+    margin: -1.5px auto;
+}
+.contacts-container {
+    margin-left: 8px;
+    width: 80%; /* Adjusted width */
+    height: 90%;
+    max-height: 100%; /* Set a max height for the container */
+    background: linear-gradient(#212121, #212121) padding-box,
+                    linear-gradient(145deg, transparent 35%, #e81cff, #40c9ff) border-box;
+    border: 2px solid transparent;
+    padding: 4px; /* Further reduced padding */
+    font-size: 9px; /* Smaller font size */
+    font-family: inherit;
+    color: white;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    border-radius: 8px; /* Slightly reduced border radius */
+    background-size: 200% 100%;
+    animation: gradient 5s ease infinite;
+    overflow: hidden;
+        }
+.contacts-div{
+    margin-right: 8px;
+    width: 100%; /* Adjust width to fit your layout */
+    height: 80%;
+    margin-left:8px;
+    background: linear-gradient(#cc00ff, #770098) padding-box,
+                        linear-gradient(145deg, transparent 35%, #e81cff, #40c9ff) border-box;
+    border: 2px solid transparent;
+    color: white;
+    box-sizing: border-box;
+    border-radius: 8px; /* Same border radius as the form */
+    animation: gradient 5s ease infinite;
+    }
+.btn-contactlink{
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    font-family: inherit;
+    color: White;
+    font-weight: 600;
+    height:10px;
+    width: 100%;
+    background-image: linear-gradient(to right, #e775fe 0%, #d400ff  50%, #ff00cc  100%);
+    border: 1px solid #414141;
+    padding: 2px;
+    font-size: 5px;
+    margin-top: 2px;
+    cursor: pointer;
+    border-radius: 2px;
+}
+.btn-back{
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    font-family: inherit;
+    color: White;
+    font-weight: 600;
+    max-height: 10%;
+    width: 100%; /* Adjusted to fit better */
+    background-image: linear-gradient(to right, #d400ff 0%, #d400ff  50%, #ff00cc  100%);
+    border: 1px solid #414141;
+    padding: 2px; /* Reduced padding */
+    font-size: 5px; /* Smaller font size for button */
+    margin-top: 2px; /* Reduced margin */
+    cursor: pointer;
+    border-radius: 4px; /* Smaller border radius */
+}
+.contacts-div p{
+    z-index: 1;
+    text-align: center;
+    margin: 0px; /* Remove default margin */
+    font-size: 4px; /* Adjust font size for address */ 
+}    
+/* Form container adjustments */
+ .Location-container {
+    margin-left: 8px;
+    width: 100%; /* Adjusted width */
+    max-height: 100%; /* Set a max height for the container */
+    background: linear-gradient(#212121, #212121) padding-box,
+                    linear-gradient(145deg, transparent 35%, #e81cff, #40c9ff) border-box;
+    border: 2px solid transparent;
+    padding: 4px; /* Further reduced padding */
+    font-size: 9px; /* Smaller font size */
+    font-family: inherit;
+    color: white;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    border-radius: 8px; /* Slightly reduced border radius */
+    background-size: 200% 100%;
+    animation: gradient 5s ease infinite;
+    overflow: hidden;
+        }    
+.Location-container .form-submit-btn {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    font-family: inherit;
+    color: White;
+    font-weight: 600;
+    max-height: 10%;
+    width: 30%; /* Adjusted to fit better */
+    background-image: linear-gradient(to right, #d400ff 0%, #d400ff  50%, #ff00cc  100%);
+    border: 1px solid #414141;
+    padding: 2px; /* Reduced padding */
+    font-size: 5px; /* Smaller font size for button */
+    margin-top: 8px;
+    margin-left: 35%;
+    cursor: pointer;
+    border-radius: 4px; /* Smaller border radius */
+    }
+
+.address-div{
+    margin-right: 8px;
+    width: 46%; /* Adjust width to fit your layout */
+    height: 80%;
+    background: linear-gradient(#212121, #212121) padding-box,
+                linear-gradient(145deg, transparent 35%, #e81cff, #40c9ff) border-box;
+    border: 2px solid transparent;
+    color: white;
+    box-sizing: border-box;
+    border-radius: 8px; /* Same border radius as the form */
+    animation: gradient 5s ease infinite;
+}
+.address-div iframe {
+    width: 100px;
+    height: 107px;
+    overflow: hidden;
+    border-radius: 8px; /* Same border radius as the form */
+}
+.address-div p {
+    z-index: 1;
+    text-align: center;
+    margin: 0px; /* Remove default margin */
+    font-size: 4px; /* Adjust font size for address */
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.form-container button:active {
+    scale: 0.95;
+}
+
+.form-container .form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Further reduced gap */
+}
+
+.form-container .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5px;
+}
+
+.form-container .form-group label {
+    display: block;
+    margin-bottom: 0px; /* Further reduced margin */
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 5px; /* Smaller font size for labels */
+}
+
+.form-container .form-group input {
+    width: 100%; /* Use full width for better responsiveness */
+    padding: 5px; /* Reduced padding */
+    border-radius: 4px; /* Smaller border radius */
+    color: #fff;
+    font-family: inherit;
+    background-color: transparent;
+    border: 1px solid #414141;
+    font-size: 6px; /* Smaller font size for input */
+}
+
+.form-container .form-group textarea {
+    width: 100%; /* Use full width for better responsiveness */
+    padding: 4px; /* Reduced padding */
+    border-radius: 4px; /* Smaller border radius */
+    resize: none;
+    color: #fff;
+    height: 38px; /* Adjusted height for the textarea */
+    border: 1px solid #414141;
+    background-color: transparent;
+    font-family: inherit;
+    font-size: 6px; /* Smaller font size for textarea */
+}
+
+.form-container .form-group input::placeholder {
+    opacity: 0.5; /* Slightly increased visibility */
+}
+
+.form-container .form-group input:focus {
+    outline: none;
+    border-color: #e81cff;
+}
+
+.form-container .form-group textarea:focus {
+    outline: none;
+    border-color: #e81cff;
+}
+
+.form-container .form-submit-btn {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    font-family: inherit;
+    color: White;
+    font-weight: 600;
+    max-height: 100%;
+    width: 30%; /* Adjusted to fit better */
+    background-image: linear-gradient(to right, #d400ff 0%, #d400ff  50%, #ff00cc  100%);
+    border: 1px solid #414141;
+    padding: 2px; /* Reduced padding */
+    font-size: 5px; /* Smaller font size for button */
+    margin-top: 8px; /* Reduced margin */
+    cursor: pointer;
+    border-radius: 4px; /* Smaller border radius */
+}
+
+.form-container .form-submit-btn:hover {
+    background-color: #fff;
+    border-color: #fff;
+}
+
+@keyframes open-laptop-monitor {
+    0% {
+        transform: perspective(1000px) rotateX(-89deg);
+        left: 0px;
+        right: 0px;
+        top: 70px;
+    }
+    55% {
+        top: 36px;
+    }
+    100% {
+        transform: perspective(1000px) rotateX(15deg);
+        left: 14px;
+        right: 14px;
+    }
+}
+
+@keyframes open-laptop-bottom-part {
+    0% {
+        transform: perspective(1000px) rotateX(89deg);
+        left: 0px;
+        right: 0px;
+        bottom: 70px;
+    }
+    90% {
+        bottom: 2px;
+    }
+    100% {
+        transform: perspective(1000px) rotateX(72deg);
+        left: 0px;
+        right: 0px;
+    }
+}
+
+@keyframes start-monitor {
+    0% {
+        background: #262626;
+    }
+    100% {
+        background: #262626;
+    }
+}
+
+@keyframes enlarge {
+    0% {
+        transform: scale(1); /* Start at normal size */
+    }
+    100% {
+        transform: scale(4.2); /* End at 20% bigger */
+    }
+}
+
+
+.in-contact {
+    background: linear-gradient(to right, #7500c3, #8e30c4, #b72ed2);
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.description3 {
+    color: white;
+    padding-top: 5px;
+    top: 80px;
+    right: 305px;
+    width: 40%;
+    text-align: left;
+    font-size: 7px;
+    position: absolute; /* Add this line */
+    z-index: 1; /* Ensure this value is higher than the laptop's z-index */
+}
+
+.description3 p{
+    font-size: 4px;
+    align-items: left;
+}

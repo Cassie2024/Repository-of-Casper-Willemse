@@ -1,0 +1,52 @@
+object frmDelete: TfrmDelete
+  Left = 0
+  Top = 0
+  Caption = 'Delete'
+  ClientHeight = 251
+  ClientWidth = 508
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object DBGrid1: TDBGrid
+    Left = 0
+    Top = 0
+    Width = 508
+    Height = 200
+    Align = alClient
+    DataSource = dmMusicplayer.dsMusic
+    TabOrder = 0
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+  end
+  object Panel1: TPanel
+    Left = 0
+    Top = 200
+    Width = 508
+    Height = 51
+    Align = alBottom
+    BevelInner = bvRaised
+    BevelKind = bkSoft
+    BevelOuter = bvLowered
+    Caption = 'Panel1'
+    TabOrder = 1
+    ExplicitWidth = 505
+    object btnDelete: TButton
+      Left = 216
+      Top = 4
+      Width = 75
+      Height = 37
+      Caption = 'Delete'
+      TabOrder = 0
+      OnClick = btnDeleteClick
+    end
+  end
+end

@@ -1,0 +1,322 @@
+h2 {
+    margin: 0;
+}
+*{
+font-family: 'Poppins', sans-serif;
+}
+body, html {
+    margin: 0;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    background: linear-gradient(to right, #280045, #8300ba);
+    scroll-behavior: smooth;
+}
+
+html {
+    overflow-y: hidden;
+}
+
+body::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, and Opera */
+}
+
+.card {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #D9D9D9;
+    font-size: 24px;
+    position: relative;
+    height: 100vh;
+    width: 100vw; /* Use viewport width for better responsiveness */
+    flex-wrap: wrap;
+    scroll-snap-align: start;
+    transform: scale(1);
+    transition: transform 0.3s ease; /* Optional: Smooth transition */
+}
+
+@media (max-width: 1280px) and (min-width: 1070px) { /* 10" */
+    section {
+        transform: scale(0.58); /* Example scale, adjust as needed */
+        transform-origin: top left; /* Ensure scaling is from the top left */
+        height: 150vh; /* Allow height to adjust as needed */
+        width:175vw;
+    }
+}
+
+@media (max-width: 1080px) and (min-width: 700px) {/*mobile*/
+    section {
+        transform: scale(0.41); /* Example scale, adjust as needed */
+        transform-origin: top left; /* Ensure scaling is from the top left */
+        height: 240vh; /* Allow height to adjust as needed */
+        width:245vw;
+    }
+}
+
+/* devices that are 1080p are unaffected*/
+
+
+.background_image{
+    width: 100%;
+    overflow: hidden;
+    background-repeat: no-repeat;
+}
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    position: relative;
+    right:0;
+}
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+.navbar a:hover {
+    background-color: mediumslateblue;
+    color: azure;
+    scale: 1.2;
+}
+.nav_container {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 97%;
+    height: 70px;
+    background: rgba(255, 255, 255, 0.093);
+    gap: 10px;
+    border-radius: 12px;
+    z-index: 100; /* Ensures the navbar is above other elements */
+    display: flex;
+    justify-content: space-around;
+    color: azure;
+}
+
+.background_image{
+    position: absolute;
+
+}
+
+.logo{
+    position:absolute;
+    top:5px;
+    left:20px;
+    width: 55px;
+    height: 55px;
+    border-radius: 20px;
+}
+.logo_img{
+    width: 100%;
+    border-radius: 20px;
+}
+
+.link_container {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    list-style: none;
+    align-items: center;
+}
+.nav_link{
+    width: fit-content;
+    height: 25px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    text-align: center;
+    border-radius: 20px;
+    margin-left:10px;
+    margin-right:10px; 
+}
+.filter-link {
+    position: relative;
+    width: fit-content; 
+    height: 25px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 50px;
+    text-align: center;
+    border-radius: 20px;
+    margin-left:10px;
+    margin-right:10px; 
+    background-color:#461964;
+    color: azure;
+    border-style: none;
+    text-decoration: none;
+}
+
+.filter-link:hover{
+    background-color: mediumslateblue;
+    cursor: pointer; /* Change cursor to pointer */
+}
+
+.Category_link{
+    width: fit-content;
+    height: 25px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    background-color: #4F378B;
+    border-radius: 20px;
+    text-align: center;
+    margin: 5px;
+}
+.button_container{
+    position: relative;
+    top: -20px;
+    right: 0;
+    width: 13%;
+    height: 100px;
+    padding: 15px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-around;
+}
+.btnMain {
+    margin-top: 25px;
+    height: 30px;
+    width: fit-content;
+    border-radius: 20px;
+    padding-top:5px; 
+    padding-left: 10px;
+    padding-right: 10px;
+    color: aliceblue;
+    background-color: #4F378B;
+    border-style: none;
+    position: relative;
+}
+.btnMain :hover{
+    background-color: rgb(255, 255, 255);
+    color: azure;
+}
+.btnbrowse {
+    margin-top: 25px;
+    height: 30px;
+    width: 10%;
+    border-radius: 20px;
+    padding-top:10px; 
+    padding-left: 10px;
+    padding-right: 10px;
+    color: aliceblue;
+    background-color: #4F378B;
+    border-style: none;
+    position: relative;
+    font-size: 14px;
+    text-decoration: none;
+}
+.btnbrowse :hover{
+    background-color: rgb(255, 255, 255);
+    color: azure;
+}
+.logo_container {
+    position: absolute;
+    top: -10px;
+    right: 0; /* Aligns the logo to the right */
+    width: 15%; 
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+.section1_mail{
+    position: relative;
+    width:100%;
+    height:10%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: row;
+}
+.section1_body{
+    position: relative;
+    width:80%;
+    height:60%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+    background-color: #ffffff57;
+    margin-top: 210px;
+    position:absolute;
+    bottom:0;
+    left:0;
+}
+.footer a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+.footer a:hover {
+    background-color: mediumslateblue;
+    color: azure;
+    scale: 1.2;
+}
+.social_links{
+    width: 35%;
+    height: 25px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    text-align: center;
+    border-radius: 20px;
+    margin-top: -10px;
+   
+}
+.footer_logo_img{
+    width: 100%;
+    border-radius: 20px;
+}
+.footer_logo{
+    width: 55px;
+    height: 55px;
+    border-radius: 20px;
+}
+.quick_nav{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 97%;
+    height: 30px;
+    color: white;
+    background: rgba(255, 255, 255, 0.093);
+    gap: 10px;
+    border-radius: 12px;
+    z-index: 100; /* Ensures the navbar is above other elements */
+    display: flex;
+    flex-wrap: wrap;
+}
+.quick_links{
+    align-items: center;
+    justify-content: space-around;
+    margin-top: -1px;
+}
+.quick_links a{
+    color: white;
+    text-decoration: none;
+    padding-left: 20px;
+    font-size: 17px;
+}
+.quick_links a:hover{
+    background-color: #4F378B;
+}

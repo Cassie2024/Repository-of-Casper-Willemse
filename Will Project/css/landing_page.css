@@ -1,0 +1,389 @@
+.left {
+    box-sizing: border-box;
+    width: 60%;
+    height: 100%;
+    top: 0;
+    color: white;
+}
+
+.right {
+    box-sizing: border-box;
+    top: 0;
+    width: 40%;
+    height: 100%;
+    color: white;
+}
+.main_page{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100vh;
+}
+.content_header{
+    color: white;
+    width: 100%;
+    height: fit-content;
+    top: 0;
+    font-size: 35px;
+    text-align: center;
+}
+.content_text{
+    color: white;
+    width: 80%;
+    height: fit-content;
+    top: 0;
+    font-size: 18px;
+    text-align: center;
+    padding-left: 10%;
+}
+.main_content{
+    color: white;
+    width: 100%;
+    height: fit-content;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+}
+.sub_content_3rd{
+    color: white;
+    width: 33%;
+    height: fit-content;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+}
+.sub_content{
+    color: white;
+    width: 100%;
+    height: fit-content;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+}
+.opaque_panel{
+    width: 1000px;
+    height: 700px;
+    border-radius: 0px 95px 0px 0px;
+    opacity: var(--sds-size-stroke-border);
+    background: linear-gradient(270deg, rgba(217, 217, 217, 0.24) 0%, rgba(115, 115, 115, 0.00) 100%);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    position:absolute;
+    bottom: 0;
+}
+.opaque_contact_us{
+    width:500px; 
+    height: 400px;
+    border-radius: 95px 95px 0px 0px;
+    opacity: var(--sds-size-stroke-border);
+    background: linear-gradient(180deg, rgba(217, 217, 217, 0.24) 0%, rgba(115, 115, 115, 0.00) 100%);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center; 
+}
+.opaque_panel_region{
+    width: 100%;
+    height: 100%;
+    border-radius: 0px 0px 0px 0px;
+    opacity: var(--sds-size-stroke-border);
+    background: linear-gradient(180deg, rgba(217, 217, 217, 0.48) 0%,rgba(217, 217, 217, 0.24) 50%, rgba(115, 115, 115, 0.04) 100%);
+    position: absolute;  
+}
+.opaque_panel_about_regions{
+    width: 100%;
+    height: 100%;
+    border-radius: 0px 0px 0px 0px;
+    opacity: var(--sds-size-stroke-border);
+    background: linear-gradient(0deg, rgba(217, 217, 217, 0.48) 0%,rgba(217, 217, 217, 0.24) 50%, rgba(115, 115, 115, 0.04) 100%);
+    position: absolute; 
+    
+}
+.elipse_container_1{
+    background: linear-gradient(to top, #280045, #8300ba);
+    border-radius: 50%;
+    width: 210px;
+    height: 210px;
+    margin-left: 90px;
+}
+.elipse_prof{
+    background: radial-gradient(circle, #9501ff 0%, #59007f 42%,  #000000 100%);
+    position: relative;
+    border-radius: 50%;
+    width: 350px;
+    height: 350px;
+    margin-top: 80px;
+    margin-bottom: 80px;
+    left:10%;
+}
+.elipse_Large {
+    background: radial-gradient(circle, #59007f 60%,  #000000 90%, #9501ff 100%);
+    border-radius: 50%;
+    width: 450px;
+    height: 450px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top:25%;
+    right:8%;
+}
+
+.elipse_Large_contact{
+    background: radial-gradient(circle, #59007f 60%,  #000000 90%, #9501ff 100%);
+    border-radius: 50%;
+    width: 450px;
+    height: 450px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.elipse_hover_region{
+    background: linear-gradient(to top, #280045, #8300ba);
+    border-radius: 50%;
+    width: 300px;
+    height: 300px;
+    margin-left: -20px;
+    position: absolute;
+    transition: margin-top 1s ease;
+}
+
+.elipse_planets_outer{
+    background: linear-gradient(to top, #280045, #8300ba);
+    border-radius: 50%;
+    width: 280px;
+    height: 280px;
+    margin-top: -50px;
+    z-index: 10; /* Make sure it's above other elements */
+    position: relative;
+    transition: margin-top 1s ease;
+}
+.elipse_planets_inner{
+    background: linear-gradient(to top, #280045, #8300ba);
+    border-radius: 50%;
+    width: 280px;
+    height: 280px;
+    margin-left: 90px;
+    margin-top: 50px;
+    z-index: 10; /* Make sure it's above other elements */
+    position: relative;
+    transition: margin-top 1s ease;
+}
+.region_img{
+    width: 200px;
+    height: 200px;
+    margin-top: -30px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.region_floating_outer{
+    width: 370px;
+    margin-left: -45px;
+}
+.region_floating_inner{
+    width: 370px;
+    margin-left: -45px;
+}
+.icon_button{
+    background: linear-gradient(to top, #280045, #8300ba);
+    border-radius: 50%;
+    border-style: none;
+    width: 60px;
+    height: 60px;
+}
+.tool_icon_button{
+    background: linear-gradient(to top, #280045, #8300ba);
+    border-radius: 50%;
+    border-style: none;
+    width: 70px;
+    height: 70px;
+}
+.elipse1{
+    background: linear-gradient(to top, #280045, #8300ba);
+    border-radius: 50%;
+    width: 380px;
+    height: 380px;
+    margin-top: -10px;
+    margin-left: 0px;
+}
+.description_icon_1{
+    margin-top: -120px;
+}
+.description_icon_2{
+    margin-top: -30px;
+    margin-left: 5px;
+}
+.description_icon_3{
+    margin-top: 10px;
+    margin-left: 10px;
+}
+.description_icon_4{
+    margin-top: 10px;
+    margin-left:10px;
+}
+.description_icon_5{
+    margin-top: -30px;
+    margin-left: 10px;
+}
+.description_icon_6{
+   margin-top: -120px;
+}
+.button_img{
+    width: 60%;
+    height: 60%;
+}
+.opaque_panel2{
+    width: 40%;
+    height: 520px;
+    border-radius: 0px 95px 0px 0px;
+    opacity: var(--sds-size-stroke-border);
+    background: linear-gradient(270deg, rgba(217, 217, 217, 0.24) 0%, rgba(115, 115, 115, 0.00) 100%);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+.elipse2{
+    background: linear-gradient(to top, #280045, #8300ba);
+    border-radius: 50%;
+    width: 400px;
+    height: 400px;
+    margin-left: 25%;
+
+}
+.elipse_2{
+    background: linear-gradient(to top, #280045, #8300ba);
+    border-radius: 50%;
+    width: 500px;
+    height: 500px;
+    margin-left: 20%;
+    margin-top: -300px;
+
+}
+.elipse3{
+    background: linear-gradient(to top, #280045, #8300ba);
+    border-radius: 50%;
+    width: 220px;
+    height: 220px;
+
+}
+.opaque_panel3{
+    width: 50%;
+    height: 700px;
+    margin-top: 150px;
+    border-radius: 95px 0px 0px 0px;
+    opacity: var(--sds-size-stroke-border);
+    background: linear-gradient(360deg,rgba(115, 115, 115, 0.00) 0%,rgba(217, 217, 217, 0.24) 100%);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+}
+.opaque_panel4{
+    width: 50%;
+    height: 561px;
+    border-radius: 0px 95px 0px 0px;
+    opacity: var(--sds-size-stroke-border);
+    background: linear-gradient(270deg, rgba(217, 217, 217, 0.24) 0%, rgba(115, 115, 115, 0.00) 100%);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+}
+.agent_team_desc{
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+}
+.opaque_panel5{
+    width: 90%;
+    height: 100%;
+    border-radius: 0px 95px 0px 0px;
+    opacity: var(--sds-size-stroke-border);
+    background: linear-gradient(270deg, rgba(217, 217, 217, 0.24) 0%, rgba(115, 115, 115, 0.00) 100%);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.content_left{
+    width: 50%;
+}
+
+.content_right{
+    width: 50%;
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(2,auto); /* Two columns: one for the button and one for the label */
+    gap: 10px; /* Space between the button and the label */
+    align-items: center; /* Vertically center the items */
+}
+.div_category {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; 
+}
+.category_links{
+    text-align: left;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    text-decoration: none;
+}
+
+.category_thumbnail{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.logo_link{
+    border-radius:50%;display:flex;justify-content:center; align-content:center;
+}
+#user-icon{
+  width:30px;border-radius:50%;  
+}
+#property_img{
+    width: 330px;height: 330px;margin-top: 15px;object-fit: cover;border-radius: 50%; align-items: center; border-color:#650090;border-width:10px;border-style:solid;
+}
+.about_us_container {
+    position: relative;
+    width: 60%;
+    display: flex;
+    justify-content: center; /* centers items horizontally */
+    align-items: center; /* centers items vertically */
+    flex-direction: column;
+    left:20%;
+}
+about_us_container_2{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center; /* centers items horizontally */
+    align-items: center; /* centers items vertically */
+    flex-direction: column;
+}
+.about_main_content{
+    color: white;width: 100%;height: fit-content;font-size: 35px;text-align: center; display:flex;flex-wrap: wrap;
+}
+.elipse_prof_img_container{
+    border-radius: 50%; border-color:#650090;border-width:5px;border-style:solid; width: 300px; height: 300px; margin-top: 20px;  
+}
+.elipse_large_img{
+    height: 340px; width: 340px; border-radius: 50%; border-style: solid; border-color: #650090; border-width: 10px;
+}

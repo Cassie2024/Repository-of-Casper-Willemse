@@ -1,0 +1,35 @@
+[
+  {
+    "agent_id": 1,
+    "agent_name": "Mellisa",
+    "agent_lastname": "Brayden",
+    "email": "melissa@RealHome.co.za",
+    "password": "agent_no_entry",
+    "phone_number": "0756941236",
+    "agency": "RealHome",
+    "created_at": "2024-09-17T22:00:00.000Z",
+    "img": "../images/users/Melissa.jpg"
+  },
+  {
+    "agent_id": 2,
+    "agent_name": "Casper",
+    "agent_lastname": "Willemse",
+    "email": "casper@RealHome.co.za",
+    "password": "password",
+    "phone_number": "0716944521",
+    "agency": "RealHome",
+    "created_at": "2024-09-17T22:00:00.000Z",
+    "img": "../images/users/Casper.jpg"
+  },
+  {
+    "agent_id": 3,
+    "agent_name": "Will",
+    "agent_lastname": "Brayden",
+    "email": "Wil@RealHome.co.za",
+    "password": "agent_admin",
+    "phone_number": "0776456876",
+    "agency": "RealHome",
+    "created_at": "2024-09-17T22:00:00.000Z",
+    "img": "../images/users/Wil.jpg"
+  }
+]

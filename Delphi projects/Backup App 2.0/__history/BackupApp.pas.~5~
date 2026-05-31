@@ -1,0 +1,186 @@
+unit BackupApp;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ComCtrls, Vcl.ExtCtrls;
+
+type
+  TForm2 = class(TForm)
+    RedOut: TRichEdit;
+    BtnCopy: TButton;
+    ComboBox1: TComboBox;
+    lblGame: TLabel;
+    btnAuto: TButton;
+    btnchange: TButton;
+    btnBackup: TButton;
+    Panel1: TPanel;
+    pnlTop: TPanel;
+    lblPrgname: TLabel;
+    Image1: TImage;
+    lblTimer: TLabel;
+    Timer1: TTimer;
+    OpenDialog1: TOpenDialog;
+    procedure Copy;
+    Procedure Search;
+    Procedure LoadDir;
+    Procedure Backup;
+    procedure btnchangeClick(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+    procedure BtnCopyClick(Sender: TObject);
+    procedure btnAutoClick(Sender: TObject);
+    procedure Timer1Timer(Sender: TObject);
+    procedure btnBackupClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form2: TForm2;
+  sBack,sSave :String;
+  ArrDir : Array[1..50] of string;
+  ArrSize: Array[1..50] of Integer;
+  ArrDate: Array[1..50] of String;
+  iTime:Integer;
+
+implementation
+
+{$R *.dfm}
+
+{ TForm2 }
+
+procedure TForm2.Backup;
+Var
+   I: Integer;
+   Searchrec: TSearchrec;
+   sFrom,sTo:String;
+begin
+   for I := 1 to 50 do
+      Begin
+         sFrom:=sSave + ArrDir[i];
+         sTo:=sBack + ArrDir[i];
+         CopyFile(pChar(sTo),pChar(sFrom),false);
+         RedOut.Lines.Add(sFrom);
+         if ArrDir[i] = '' then
+           Begin
+              Exit;
+           End;
+
+      end;
+end;
+
+procedure TForm2.btnAutoClick(Sender: TObject);
+begin
+   Timer1.Enabled:=True;
+   iTime:=0;
+end;
+
+procedure TForm2.btnBackupClick(Sender: TObject);
+begin
+   search;
+   backup;
+end;
+
+procedure TForm2.btnchangeClick(Sender: TObject);
+Var
+   myFile:Textfile;
+   sList: TStringList;
+begin
+    Assignfile(myfile,'Bin\Dir.txt');
+    ReWrite(Myfile);
+   Opendialog1.FileName:= 'Pick Save Location';
+   if Opendialog1.Execute() then
+     begin
+        sSave:=ExtractFilepath(Opendialog1.Filename);
+     end;
+   Opendialog1.FileName:= 'Pick Backup Location';
+   if Opendialog1.Execute() then
+     begin
+        sBack:=ExtractFilepath(Opendialog1.Filename);
+     end;
+    Writeln(myFile,sSave);
+    Writeln(myFile,sBack);
+    CloseFile(myFile);
+end;
+
+procedure TForm2.BtnCopyClick(Sender: TObject);
+begin
+   Search;
+   Copy;
+end;
+
+procedure TForm2.Copy;
+Var
+   I: Integer;
+   Searchrec: TSearchrec;
+   sFrom,sTo:String;
+begin
+   for I := 1 to 50 do
+      Begin
+         sFrom:=sSave + ArrDir[i];
+         sTo:=sBack + ArrDir[i];
+         CopyFile(pChar(sFrom),pChar(sTo),false);
+         RedOut.Lines.Add(sFrom);
+         if ArrDir[i] = '' then
+           Begin
+              Exit;
+           End;
+
+      end;
+end;
+
+procedure TForm2.FormActivate(Sender: TObject);
+begin
+   RedOut.Lines.Add('Name | ' + #9+ #9 + 'Size | ' + #9 + 'Date Added | ');
+   lblTimer.Caption:='Time: 0';
+   Timer1.Enabled:=False;
+   LoadDir;
+end;
+
+procedure TForm2.LoadDir;
+Var
+   myFile: Textfile;
+   Text:String;
+begin
+   assignFile(myFile,'Bin\Dir.txt');
+   Reset(myfile);
+   Readln(myfile,sSave);
+   Readln(myFile,sBack);
+   CloseFile(myfile);
+end;
+
+procedure TForm2.Search;
+Var
+   srSearch:tSearchrec;
+   sFirst:String;
+   i:Integer;
+begin
+   FindFirst(sSave + '*.*',FaAnyFile,srSearch);
+   I:=0;
+   While sFirst <>srSearch.Name Do
+      Begin
+         sFirst:=srSearch.Name;
+         FindNext(srSearch);
+         if srSearch.Name <> '..' then
+           Begin
+              inc(i);
+              ArrDir[i]:=srSearch.Name;
+           End;
+      End;
+   FindClose(srSearch);
+end;
+
+procedure TForm2.Timer1Timer(Sender: TObject);
+begin
+   inc(iTime);
+   if iTime = 120 then
+     Begin
+        Search;
+        Copy;
+     End;
+end;
+
+end.

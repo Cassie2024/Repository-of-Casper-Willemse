@@ -1,0 +1,76 @@
+{
+  "countries": [
+    {
+      "name": "Aetheria",
+      "states": [
+        {
+          "name": "Cloudland",
+          "cities": [
+            "Nebulon City",
+            "Zephyra City",
+            "Cumulus City",
+            "Nimbus City",
+            "Seraphim City",
+            "Aurelia City",
+            "Elysian City",
+            "Celestia City",
+            "Aether City",
+            "Vesper City"
+          ]
+        },
+        {
+          "name": "Serenitas",
+          "cities": [
+            "Auroria",
+            "Fortuna",
+            "Verdantia",
+            "Aurum Valley",
+            "Arboralis",
+            "Nimboria",
+            "Elysium"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Zephyra",
+      "states": [
+        {
+          "name": "Skylands",
+          "cities": [
+            "Windhaven",
+            "Cloudspire",
+            "Gale City",
+            "Breeze Town"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Nimboria",
+      "states": [
+        {
+          "name": "Nimbus Valley",
+          "cities": [
+            "Stormwatch",
+            "Thunder City",
+            "Tempest Bay"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Floria",
+      "states": [
+        {
+          "name": "Gardenia",
+          "cities": [
+            "Blossomville",
+            "Petal Town",
+            "Bloom City"
+          ]
+        }
+      ]
+    }
+  ]
+}

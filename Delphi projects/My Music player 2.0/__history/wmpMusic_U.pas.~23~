@@ -1,0 +1,236 @@
+unit wmpMusic_U;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs,dmMusicPlayer_U, Data.DB, Vcl.ExtCtrls,
+  Vcl.Grids, Vcl.DBGrids, Vcl.OleCtrls, WMPLib_TLB, Vcl.StdCtrls, Vcl.ComCtrls, GIFimg,
+  Vcl.Samples.Spin, DeleteSong_U, System.ImageList, Vcl.ImgList;
+
+type
+  TfrmMusicPlayer = class(TForm)
+    wmpMusic: TWindowsMediaPlayer;
+    Panel1: TPanel;
+    imgGiF: TImage;
+    pbProgress: TProgressBar;
+    btnPlay: TButton;
+    Button2: TButton;
+    Button3: TButton;
+    btnAdd: TButton;
+    btnDelete: TButton;
+    tPos: TTimer;
+    ImageList1: TImageList;
+    btnPick: TButton;
+    DBGrid1: TDBGrid;
+    Procedure play;
+    Procedure Url;
+    procedure btnPlayClick(Sender: TObject);
+    procedure setProgressbar;
+    Procedure pgSetMax;
+    procedure tPosTimer(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+    procedure btnAddClick(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
+    procedure btnDeleteClick(Sender: TObject);
+    procedure btnPlayKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure btnPickClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmMusicPlayer: TfrmMusicPlayer;
+  bRepeat, bStartUp : boolean;
+  ipgProg: integer;
+
+
+implementation
+
+{$R *.dfm}
+////////////////////////////////////////////////////////////////////////////////
+procedure TfrmMusicPlayer.btnDeleteClick(Sender: TObject);
+begin
+   frmDelete.visible:=True;
+end;
+////////////////////////////////////////////////////////////////////////////////
+procedure TfrmMusicPlayer.btnPickClick(Sender: TObject);
+begin
+   dbGrid1.Visible:= True;
+end;
+
+procedure TfrmMusicPlayer.btnPlayClick(Sender: TObject);
+begin
+   if bStartup = True then
+     Begin
+        play;
+        bStartUp:=False;
+     End
+        else
+            Begin
+               if wmpMusic.playState = wmppsPaused then
+                 Begin
+                    wmpMusic.controls.play;
+                    btnPlay.ImageIndex:=0;
+                    btnPlay.Caption:='Play';
+                 End
+                    Else
+                        Begin
+                           wmpMusic.controls.Pause;
+                           btnPlay.ImageIndex:=1;
+                           btnPlay.Caption:='Pause';
+                        End;
+            End;
+end;
+////////////////////////////////////////////////////////////////////////////////
+procedure TfrmMusicPlayer.btnPlayKeyUp(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+   if key = 190 then
+     Begin
+         if bStartup = True then
+           Begin
+              play;
+              bStartUp:=False;
+           End
+              else
+                  Begin
+                     if wmpMusic.playState = wmppsPaused then
+                       Begin
+                          wmpMusic.controls.play;
+                          btnPlay.ImageIndex:=0;
+                          btnPlay.Caption:='Play';
+                       End
+                          Else
+                              Begin
+                                 wmpMusic.controls.Pause;
+                                 btnPlay.ImageIndex:=1;
+                                 btnPlay.Caption:='Pause';
+                              End;
+            End;
+     End;
+
+end;
+////////////////////////////////////////////////////////////////////////////////
+procedure TfrmMusicPlayer.btnAddClick(Sender: TObject);
+begin
+   With dmMusicplayer Do
+       Begin
+          tblMusic.Insert;
+          tblMusic['Name']:=InputBox('Name','Enter:','');
+          tblMusic['Duration']:=InputBox('Duration','Enter:','');
+          tblMusic['Gif']:=InputBox('Gif','Gif','') + '.gif';
+          tblMusic['Extention']:=InputBox('Extention','Enter:','');
+          tblMusic.Post;
+       End;
+end;
+////////////////////////////////////////////////////////////////////////////////
+procedure TfrmMusicPlayer.Button2Click(Sender: TObject);
+begin
+   with dmMusicPlayer Do
+       Begin
+          tblMusic.Next;
+          if tblMusic.Eof then
+            Begin
+               tblMusic.First;
+               Play;
+            End
+               else Play;
+
+       End;
+end;
+////////////////////////////////////////////////////////////////////////////////
+procedure TfrmMusicPlayer.Button3Click(Sender: TObject);
+begin
+   With dmMusicPlayer Do
+       Begin
+          tblMusic.Prior;
+          if tblMusic.Bof then
+            Begin
+               tblMusic.Last;
+               Play;
+            End
+               Else Play;
+       End;
+end;
+
+procedure TfrmMusicPlayer.play;
+begin
+   Url;
+end;
+////////////////////////////////////////////////////////////////////////////////
+procedure TfrmMusicPlayer.FormActivate(Sender: TObject);
+begin
+   bStartUp:= True;
+   btnPlay.ImageIndex:=0;
+   btnPlay.Caption:='Play';
+end;
+////////////////////////////////////////////////////////////////////////////////
+procedure TfrmMusicPlayer.pgSetMax;
+Var
+   sPStbl: String;
+   iMin, iSec: Integer;
+begin
+   With dmMusicplayer Do
+       Begin
+          sPStbl:= tblMusic['Duration'];
+          iMin:= StrToInt(sPStbl[1] + sPStbl[2]);
+          iSec:= StrToInt(sPStbl[4] + sPStbl[5]);
+          ipgProg:= iMin * 60 + iSec;
+
+          pbProgress.max:= ipgProg;
+       End;
+end;
+////////////////////////////////////////////////////////////////////////////////
+procedure TfrmMusicPlayer.setProgressbar;
+Var
+   sPSWMP: String;
+   iMin, iSec, ipos: Integer;
+begin
+   sPSWMP:= wmpMusic.controls.currentPositionString;
+   iMin:= StrToInt(sPSWMP[1] + sPSWMP[2]);
+   iSec:= StrToInt(sPSWMP[4] + sPSWMP[5]);
+   ipos:= iMin * 60 + iSec;
+
+   pbProgress.Position:= ipos;
+end;
+////////////////////////////////////////////////////////////////////////////////
+procedure TfrmMusicPlayer.tPosTimer(Sender: TObject);
+begin
+   if wmpMusic.playState = wmppsPlaying then
+     Begin
+        setProgressbar;
+     End;
+   With dmMusicPlayer Do
+       Begin
+          if wmpMusic.Playstate = wmppsStopped then
+            Begin
+               tblMusic.Next;
+               if tblMusic.Eof then
+                 Begin
+                    tblMusic.First;
+                    Play;
+                 End;
+            End;
+       End;
+
+end;
+////////////////////////////////////////////////////////////////////////////////
+procedure TfrmMusicPlayer.Url;
+begin
+   with dmMusicPlayer Do
+       Begin
+          wmpMusic.Visible:=False;
+          wmpMusic.URL:='Music/' + tblMusic['Name'] + tblMusic['Extention'];
+          wmpMusic.controls.play;
+          imgGiF.Picture.LoadFromFile('Gifs/' + tblMusic['Gif']);
+          (imgGiF.Picture.Graphic as TGifimage).Animate := true;
+          pgSetMax;
+          tpos.Enabled:=true;
+       End;
+end;
+////////////////////////////////////////////////////////////////////////////////
+end.

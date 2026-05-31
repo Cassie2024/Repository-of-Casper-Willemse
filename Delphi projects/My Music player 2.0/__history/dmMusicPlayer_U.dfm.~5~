@@ -1,0 +1,37 @@
+object dmMusicplayer: TdmMusicplayer
+  OldCreateOrder = False
+  Height = 96
+  Width = 215
+  object conMusic: TADOConnection
+    Connected = True
+    ConnectionString = 
+      'Provider=Microsoft.Jet.OLEDB.4.0;User ID=Admin;Data Source=C:\Us' +
+      'ers\Mystic\Desktop\My Music player 2.0\DataBase\DBMusicLibrairy.' +
+      'mdb;Mode=ReadWrite;Persist Security Info=False;Jet OLEDB:System ' +
+      'database="";Jet OLEDB:Registry Path="";Jet OLEDB:Database Passwo' +
+      'rd="";Jet OLEDB:Engine Type=5;Jet OLEDB:Database Locking Mode=1;' +
+      'Jet OLEDB:Global Partial Bulk Ops=2;Jet OLEDB:Global Bulk Transa' +
+      'ctions=1;Jet OLEDB:New Database Password="";Jet OLEDB:Create Sys' +
+      'tem Database=False;Jet OLEDB:Encrypt Database=False;Jet OLEDB:Do' +
+      'n'#39't Copy Locale on Compact=False;Jet OLEDB:Compact Without Repli' +
+      'ca Repair=False;Jet OLEDB:SFP=False'
+    LoginPrompt = False
+    Mode = cmReadWrite
+    Provider = 'Microsoft.Jet.OLEDB.4.0'
+    Left = 152
+    Top = 16
+  end
+  object tblMusic: TADOTable
+    Active = True
+    Connection = conMusic
+    CursorType = ctStatic
+    TableName = 'Table1'
+    Left = 16
+    Top = 16
+  end
+  object dsMusic: TDataSource
+    DataSet = tblMusic
+    Left = 80
+    Top = 16
+  end
+end

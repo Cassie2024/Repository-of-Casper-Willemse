@@ -1,0 +1,882 @@
+//Casper Willemse Gr11
+unit Unit1;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, MPlayer, Grids, DBGrids, ExtCtrls, ComCtrls, Unit2,
+  OleCtrls, WMPLib_TLB, Mask, DBCtrls, GIFImg, Spin, Buttons, Gauges;
+
+type
+  TMusicPlayer = class(TForm)
+    Timer1: TTimer;
+    pcMusicPlayer: TPageControl;
+    tbMusicPlayer: TTabSheet;
+    Panel1: TPanel;
+    Image1: TImage;
+    lblName: TLabel;
+    Panel3: TPanel;
+    btnPlayPause: TButton;
+    btnNext: TButton;
+    btnPrevious: TButton;
+    btnForward: TButton;
+    btnRewind: TButton;
+    btnOpen: TButton;
+    btnEditRecords: TButton;
+    btnAddDelete: TButton;
+    btnRepeat: TButton;
+    btnFulscreen: TButton;
+    bmbClose: TBitBtn;
+    Panel2: TPanel;
+    WindowsMediaPlayer1: TWindowsMediaPlayer;
+    btnStop: TButton;
+    tbAddDelete: TTabSheet;
+    Image2: TImage;
+    Panel4: TPanel;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label12: TLabel;
+    Label13: TLabel;
+    Label14: TLabel;
+    Label15: TLabel;
+    Label16: TLabel;
+    Label17: TLabel;
+    edtName: TEdit;
+    edtGenre: TEdit;
+    edtArtist: TEdit;
+    edtAlbum: TEdit;
+    dtpDate: TDateTimePicker;
+    sedRating: TSpinEdit;
+    sedDuration: TSpinEdit;
+    edtExtention: TEdit;
+    cbxVideo: TCheckBox;
+    ComboBox1: TComboBox;
+    Panel5: TPanel;
+    btnSearchByID: TButton;
+    Button16: TButton;
+    Button15: TButton;
+    Button14: TButton;
+    tbEditRecords: TTabSheet;
+    Panel6: TPanel;
+    Panel8: TPanel;
+    Label5: TLabel;
+    DBEdit2: TDBEdit;
+    Panel7: TPanel;
+    Label4: TLabel;
+    DBEdit1: TDBEdit;
+    Panel9: TPanel;
+    Label6: TLabel;
+    DBEdit3: TDBEdit;
+    Panel10: TPanel;
+    Label7: TLabel;
+    DBEdit5: TDBEdit;
+    Panel11: TPanel;
+    Label8: TLabel;
+    DBEdit4: TDBEdit;
+    Panel14: TPanel;
+    Label9: TLabel;
+    DBEdit6: TDBEdit;
+    Panel15: TPanel;
+    Label10: TLabel;
+    DBEdit7: TDBEdit;
+    Button1: TButton;
+    Button2: TButton;
+    btnFilterArtist: TButton;
+    Button4: TButton;
+    Button5: TButton;
+    btnFilterRating: TButton;
+    Panel17: TPanel;
+    Label18: TLabel;
+    DBEdit9: TDBEdit;
+    btnFilterGenre: TButton;
+    DBGrid1: TDBGrid;
+    Panel16: TPanel;
+    Label11: TLabel;
+    DBCheckBox1: TDBCheckBox;
+    DBEdit8: TDBEdit;
+    DBNavigator1: TDBNavigator;
+    Button17: TButton;
+    btnFilterAlbum: TButton;
+    btnAddToPlaylist: TButton;
+    lblDuration: TLabel;
+    Label19: TLabel;
+    Label20: TLabel;
+    trbVolume: TTrackBar;
+    btnPlayPlaylist: TButton;
+    Label21: TLabel;
+    Button3: TButton;
+    btnStopPlaylist: TButton;
+    redSummary: TRichEdit;
+    Button6: TButton;
+    pgDuration: TProgressBar;
+    procedure btnPlayPauseClick(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+    procedure btnNextClick(Sender: TObject);
+    procedure btnPreviousClick(Sender: TObject);
+    procedure btnFulscreenClick(Sender: TObject);
+    procedure Button15Click(Sender: TObject);
+    procedure BitBtn1Click(Sender: TObject);
+    procedure Timer1Timer(Sender: TObject);
+    procedure btnRepeatClick(Sender: TObject);
+    procedure btnOpenClick(Sender: TObject);
+    procedure Button13Click(Sender: TObject);
+    procedure btnEditRecordsClick(Sender: TObject);
+    procedure btnAddDeleteClick(Sender: TObject);
+    procedure Button16Click(Sender: TObject);
+    procedure Button14Click(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure btnStopClick(Sender: TObject);
+    procedure btnForwardClick(Sender: TObject);
+    procedure btnRewindClick(Sender: TObject);
+    procedure Button17Click(Sender: TObject);
+    procedure btnSearchByIDClick(Sender: TObject);
+    procedure btnFilterAlbumClick(Sender: TObject);
+    procedure btnFilterArtistClick(Sender: TObject);
+    procedure Button4Click(Sender: TObject);
+    procedure Button5Click(Sender: TObject);
+    procedure btnFilterRatingClick(Sender: TObject);
+    procedure btnFilterGenreClick(Sender: TObject);
+    procedure Image1Click(Sender: TObject);
+    procedure trbVolumeChange(Sender: TObject);
+    procedure btnAddToPlaylistClick(Sender: TObject);
+    procedure btnPlayPlaylistClick(Sender: TObject);
+    procedure btnStopPlaylistClick(Sender: TObject);
+    procedure Button6Click(Sender: TObject);
+  private
+    { Private declarations }
+    ArrPlaylist: Array[1..30] of String;
+    ArrSongDuration: Array[1..30] of Integer;
+    Procedure Play;
+    Procedure TimerCode;
+    Procedure PlayPlaylist;
+  public
+    { Public declarations }
+  end;
+//Global Variables//////////////////////////////////////////////////////////////
+var
+  MusicPlayer: TMusicPlayer;
+  iDuration, iAmount, iplay, Ipos, itel, iPlayFirst, IDFirst, IDLast,
+  iPlaylist, iPlaylistPos: integer;
+  bForward, bRewind, paused, Songpicked,bRepeat, bpPlaylist,bArraysPopulated
+  : Boolean;
+////////////////////////////////////////////////////////////////////////////////
+implementation
+
+{$R *.dfm}
+//Close Application/////////////////////////////////////////////////////////////
+procedure TMusicPlayer.BitBtn1Click(Sender: TObject);
+begin
+   Close;
+end;
+//Open Other MediaFile//////////////////////////////////////////////////////////
+procedure TMusicPlayer.Button13Click(Sender: TObject);
+begin
+   if DmMediaPlayer.OpenDialog1.Execute then
+     Begin
+        WindowsMediaPlayer1.URL:= DmMediaPlayer.OpenDialog1.FileName;
+        image1.Picture.LoadFromFile('Gifs/' + dmMediaPlayer.tblMedia['Gif']);
+        (Image1.Picture.Graphic as TGIFImage).Animate := True;
+        DmMediaPlayer.OpenDialog1.Filter:='mp3Files(*.mp3)|*.mp3'
+     End;
+end;
+//Go To EditRecords Tab From Delete Add Tab/////////////////////////////////////
+procedure TMusicPlayer.Button14Click(Sender: TObject);
+begin
+   pcMusicPlayer.ActivePage:=tbEditRecords;
+end;
+//Insert Record/////////////////////////////////////////////////////////////////
+procedure TMusicPlayer.Button15Click(Sender: TObject);
+begin
+   with dmMediaPlayer Do
+       Begin
+          tblMedia.Last;
+          tblMedia.Insert;
+          tblMedia['Name']:=edtName.Text;
+          tblMedia['Artist']:=edtArtist.Text;
+          tblMedia['Album']:=edtAlbum.Text;
+          tblMedia['Genre']:=edtGenre.Text;
+          tblMedia['Date released']:=dtpDate.DateTime;
+          tblMedia['Rating']:=SedRating.Value;
+          tblMedia['Duration']:=SedDuration.Value;
+          tblMedia['Gif']:=ComboBox1.Items[ComboBox1.ItemIndex];
+          tblMedia['Extention']:=edtExtention.Text;
+          if cbxVideo.Checked = True then
+            Begin
+               tblMedia['Video']:=True;
+            End
+               Else
+                   Begin
+                      tblMedia['Video']:=False;
+                   End;
+          tblMedia.Post;
+          IDLast:=tblMedia['ID']
+       End;
+
+end;
+//Go to Music player Tab Form Add Delete Tab////////////////////////////////////
+procedure TMusicPlayer.Button16Click(Sender: TObject);
+begin
+   pcMusicPlayer.ActivePage:=tbMusicPlayer;
+end;
+//Delete Record/////////////////////////////////////////////////////////////////
+procedure TMusicPlayer.Button17Click(Sender: TObject);
+begin
+   if MessageDlg('Are you sure',mtWarning, [mbOK,mbCancel], 0) = mrOK then
+     Begin
+        dmMediaPlayer.tblMedia.Delete;
+     End;
+
+end;
+//Search Database by ID/////////////////////////////////////////////////////////
+procedure TMusicPlayer.btnSearchByIDClick(Sender: TObject);
+var
+   IDSearch: integer;
+begin
+   IDSearch:=StrToInt(Inputbox('Enter Song ID','ID',''));
+   dmMediaPlayer.tblMedia.First;
+   With dmMediaPlayer Do
+       while Not tblMedia.Eof do
+            Begin
+               If IDSearch = tblMedia['ID'] Then
+                 Begin
+                    ShowMessage('The Name of the song is: ' + tblMedia['Name']);
+                    if MessageDlg('Would you like to play this' +
+                       'song?',mtInformation,[mbYes,mbNo], 0) = mrYes then
+                      Begin
+                        Play;
+                        Timer1.Enabled:=True;
+                        btnNext.Enabled:=True;
+                        btnPrevious.Enabled:=True;
+                        btnForward.Enabled:=True;
+                        btnRewind.Enabled:=True;
+                        btnStop.Enabled:=True;
+                        btnRepeat.Enabled:=True;
+                        pcMusicPlayer.ActivePage:=tbMusicPlayer;
+                      End;
+                    Exit;
+                 End;
+               tblMedia.Next;
+            End;
+end;
+//GoTo MusicPlayer Tab From Edit Tab////////////////////////////////////////////
+procedure TMusicPlayer.Button1Click(Sender: TObject);
+begin
+   pcMusicPlayer.ActivePage:=tbMusicPlayer;
+end;
+//GoTo Delete and Add record Tab From Edit Tab//////////////////////////////////
+procedure TMusicPlayer.Button2Click(Sender: TObject);
+begin
+   pcMusicPlayer.ActivePage:=tbAddDelete;
+end;
+//Unfilter Data/////////////////////////////////////////////////////////////////
+procedure TMusicPlayer.Button4Click(Sender: TObject);
+begin
+   dmMediaplayer.tblMedia.Filtered:=False;
+   redSummary.Clear;
+end;
+//Filter By Length In Seconds///////////////////////////////////////////////////
+procedure TMusicPlayer.Button5Click(Sender: TObject);
+Var
+   iUpper, iLower,iCount: integer;
+begin
+  iCount:=0;
+  iUpper:=StrToInt(InputBox('Enter Max length in seconds.','Max Length',''));
+  iLower:=StrToInt(InputBox('Enter Minimum Length in seconds','Min Length',''));
+  dmMediaPlayer.tblMedia.Filter:='Duration <'''+IntToStr(IUpper)+''''
+                                 + 'And Duration >'''+IntToStr(iLower)+'''';
+  dmMediaPlayer.tblMedia.Filtered:=True;
+  dmMediaPlayer.tblMedia.Last;
+  IdLast:=dmMediaPlayer.tblMedia['Id'];
+  dmMediaPlayer.tblMedia.First;
+   while Not(dmMediaPlayer.tblMedia.Eof) do
+        Begin
+           Inc(Icount);
+           dmMediaPlayer.tblMedia.Next;
+        End;
+   dmMediaPlayer.tblMedia.First;
+   redSummary.Lines.Add('There was ' + IntToStr(iCount) + 'records found for '
+                        + 'Songs between ' + IntToStr(iLower) + ' And '
+                        + IntToStr(iUpper));
+end;
+//Play Record from Edit Tab/////////////////////////////////////////////////////
+procedure TMusicPlayer.Button6Click(Sender: TObject);
+begin
+   if iPlayFirst = 0 then
+     Begin
+        if panel2.Visible = True then
+          Begin
+             Panel2.Visible:=False;
+          End;
+        bpPlaylist:=False;
+        pgDuration.Position:=0;
+        iPlaylistPos:=0;
+        Play;
+        iplayFirst:=1;
+        btnNext.Enabled:=True;
+        btnPrevious.Enabled:=True;
+        btnForward.Enabled:=True;
+        btnRewind.Enabled:=True;
+        btnStop.Enabled:=True;
+        btnStopPlaylist.Enabled:=False;
+        if dmMediaPlayer.tblMedia['Video'] = True then
+          Begin
+             btnFulScreen.Enabled:=True;
+          End;
+        btnRepeat.Enabled:=True;
+        SongPicked:=True;
+     End
+end;
+//Play/Puase Button also for playing first record///////////////////////////////
+procedure TMusicPlayer.btnPlayPauseClick(Sender: TObject);
+begin
+   if iPlayFirst = 0 then
+     Begin
+        if panel2.Visible = True then
+          Begin
+             Panel2.Visible:=False;
+          End;
+        bpPlaylist:=False;
+        pgDuration.Position:=0;
+        iPlaylistPos:=0;
+        Play;
+        iplayFirst:=1;
+        btnNext.Enabled:=True;
+        btnPrevious.Enabled:=True;
+        btnForward.Enabled:=True;
+        btnRewind.Enabled:=True;
+        btnStop.Enabled:=True;
+        btnStopPlaylist.Enabled:=False;
+        if dmMediaPlayer.tblMedia['Video'] = True then
+          Begin
+             btnFulScreen.Enabled:=True;
+          End;
+        btnRepeat.Enabled:=True;
+        SongPicked:=True;
+     End
+        Else
+            Begin
+               if paused = true then
+                 Begin
+                    paused:=False;
+                    WindowsMediaplayer1.controls.play;
+                    Timer1.Enabled:=True;
+                 End
+                    Else
+                        Begin
+                           paused:= True;
+                           WindowsMediaplayer1.controls.pause;
+                           Timer1.Enabled:=False;
+                        End;
+            End;
+end;
+//Play Playlist/////////////////////////////////////////////////////////////////
+procedure TMusicPlayer.btnPlayPlaylistClick(Sender: TObject);
+Var
+   tPlaylist: TStringList;
+   f: TextFile;
+   sLine,s: String;
+   i, k, x, iLength, ipos, inumber: integer;
+begin
+   if bArraysPopulated = False then
+     Begin
+   tPlaylist:= tStringlist.Create;
+   i:=0;
+   AssignFile(f,'TextFiles/' +InputBox('Play:','Specify Playlist','')+ '.txt');
+   Reset(f);
+   while (Not Eof(f)) And (i < 30) do
+        Begin
+           Inc(i);
+           Readln(f,sLine);
+           ipos:=Pos('#',sLine);
+           ilength:=Length(sline);
+           s:=copy(sLine,ipos + 1,ilength);
+           Delete(sline,ipos,iLength);
+           ArrSongDuration[i]:=StrToInt(s);
+           ArrPlaylist[i]:=sLine;
+           bArraysPopulated:=True;
+           btnNext.Enabled:=True;
+           btnPrevious.Enabled:=True;
+        End;
+        End;
+   SongPicked:=True;
+   bpPlaylist:=True;
+   iPlaylistPos:=0;
+   pgduration.Position:=0;
+   btnStopPlaylist.Enabled:=True;
+   Timer1.Enabled:=True;
+end;
+//GoTo AddDelete page From MediaPlayer Tab//////////////////////////////////////
+procedure TMusicPlayer.btnAddDeleteClick(Sender: TObject);
+begin
+   pcMusicPlayer.ActivePage:=tbAddDelete;
+end;
+//Add To playlist in database///////////////////////////////////////////////////
+procedure TMusicPlayer.btnAddToPlaylistClick(Sender: TObject);
+Var
+   tPlaylist,tCreate: TextFile;
+   sLine, sSongName: String;
+   i :Integer;
+begin
+   if MessageDlg('Would you like to Create new Playlist' +
+                 'song?',mtInformation,[mbYes,mbNo], 0) = mrYes then
+     Begin
+        if dmMediaPlayer.tblMedia['Video'] = True then
+          Begin
+             ShowMessage('Sorry You cant add video files to the playlist');
+             Exit;
+          End
+             Else
+                 Begin
+                    sLine:=InputBox('Create playlist','Specify name','');
+                    AssignFile(tCreate,'TextFiles/' + sLine +'.txt');
+                    Rewrite(tCreate);
+                    Writeln(tCreate,dmMediaPlayer.tblMedia['Name']
+                                 +dmMediaPlayer.tblMedia['Extention'] + '#'
+                                 +IntToStr(dmMediaPlayer.tblMedia['Duration']));
+                    CloseFile(tCreate);
+                 End;
+     End
+        Else
+            Begin
+               sLine:=InputBox('Add to existig playlist','Specify name','');
+               AssignFile(tPlaylist,'TextFiles/' + sLine +'.txt');
+               Append(tplaylist);
+               Writeln(tPlayList,dmMediaPlayer.tblMedia['Name']
+                                +dmMediaPlayer.tblMedia['Extention'] + '#'
+                                +IntToStr(dmMediaPlayer.tblMedia['Duration']));
+               CloseFile(tPlaylist);
+            End;
+
+end;
+//Go To Edit Records Tab From mediaplayer///////////////////////////////////////
+procedure TMusicPlayer.btnEditRecordsClick(Sender: TObject);
+begin
+   pcMusicPlayer.ActivePage:=tbEditRecords;
+end;
+//Filter Data By Album//////////////////////////////////////////////////////////
+procedure TMusicPlayer.btnFilterAlbumClick(Sender: TObject);
+Var
+   sAlbum: String;
+   iCount: integer;
+begin
+   iCount:=0;
+   sAlbum:=InputBox('Enter Album name','Album','');
+   dmMediaPlayer.tblMedia.Filter:='Album ='''+sAlbum+'''';
+   dmMediaPlayer.tblMedia.Filtered:=True;
+   dmMediaPlayer.tblMedia.Last;
+   IdLast:=dmMediaPlayer.tblMedia['Id'];
+   dmMediaPlayer.tblMedia.First;
+   while Not(dmMediaPlayer.tblMedia.Eof) do
+        Begin
+           Inc(Icount);
+           dmMediaPlayer.tblMedia.Next;
+        End;
+   dmMediaPlayer.tblMedia.First;
+   redSummary.Lines.Add('There was ' + IntToStr(iCount) + 'records found for '
+                        + 'the Album ' + sAlbum);
+end;
+//Filter Data by Artist/////////////////////////////////////////////////////////
+procedure TMusicPlayer.btnFilterArtistClick(Sender: TObject);
+Var
+   sString: String;
+   iCount: Integer;
+begin
+   iCount:=0;
+   sString:=InputBox('Enter Artist name','Artist','');
+   dmMediaPlayer.tblMedia.Filter:='Artist ='''+sString+'''';
+   dmMediaPlayer.tblMedia.Filtered:=True;
+   dmMediaPlayer.tblMedia.Last;
+   IdLast:=dmMediaPlayer.tblMedia['Id'];
+   dmMediaPlayer.tblMedia.First;
+   while Not(dmMediaPlayer.tblMedia.Eof) do
+        Begin
+           Inc(Icount);
+           dmMediaPlayer.tblMedia.Next;
+        End;
+   dmMediaPlayer.tblMedia.First;
+   redSummary.Lines.Add('There was ' + IntToStr(iCount) + 'records found for '
+                        + 'the Artist ' + sString);
+end;
+//Filter Data by genre//////////////////////////////////////////////////////////
+procedure TMusicPlayer.btnFilterGenreClick(Sender: TObject);
+Var
+   Icount: integer;
+   sString: String;
+begin
+   iCount:=0;
+   sString:=InputBox('Enter Genre','Genre','');
+   dmMediaPlayer.tblMedia.Filter:='Genre ='''+sString+'''';
+   dmMediaPlayer.tblMedia.Filtered:=True;
+   dmMediaPlayer.tblMedia.Last;
+   IdLast:=dmMediaPlayer.tblMedia['Id'];
+   dmMediaPlayer.tblMedia.First;
+   while Not(dmMediaPlayer.tblMedia.Eof) do
+        Begin
+           Inc(Icount);
+           dmMediaPlayer.tblMedia.Next;
+        End;
+   dmMediaPlayer.tblMedia.First;
+   redSummary.Lines.Add('There was ' + IntToStr(iCount) + 'records found for '
+                        + 'the genre ' + sString);
+end;
+//Filter data by rating/////////////////////////////////////////////////////////
+procedure TMusicPlayer.btnFilterRatingClick(Sender: TObject);
+Var
+   iRating,Icount: integer;
+begin
+   iCount:=0;
+   iRating:=StrToInt(InputBox('Enter Song Rating','Rating',''));
+   if (iRating < 0) Or (iRating > 5)then
+     Begin
+        iRating:=StrToInt(InputBox('Enter a value between 0 & 5','Rating',''));
+        if (iRating < 0) Or (iRating > 5)then
+          Begin
+             Exit;
+          End;
+     End;
+   dmMediaPlayer.tblMedia.Filter:='Rating ='''+IntToStr(iRating)+'''';
+   dmMediaPlayer.tblMedia.Filtered:=True;
+   dmMediaPlayer.tblMedia.Last;
+   IdLast:=dmMediaPlayer.tblMedia['Id'];
+   dmMediaPlayer.tblMedia.First;
+   while Not(dmMediaPlayer.tblMedia.Eof) do
+        Begin
+           Inc(Icount);
+           dmMediaPlayer.tblMedia.Next;
+        End;
+   dmMediaPlayer.tblMedia.First;
+   redSummary.Lines.Add('There was ' + IntToStr(iCount) + 'records found with '
+                        + 'the rating ' + IntToStr(iRating));
+end;
+//Forwarding Song///////////////////////////////////////////////////////////////
+procedure TMusicPlayer.btnForwardClick(Sender: TObject);
+begin
+   If bForward = true Then
+     Begin
+        WindowsMediaPlayer1.Controls.play;
+        bForward:= False;
+        btnRewind.Enabled:=True;
+     End
+        Else
+            Begin
+               btnRewind.Enabled:=False;
+               WindowsMediaPlayer1.Controls.fastForward;
+               bForward:=True;
+            End;
+end;
+//Set MediaPlayer windo to fulscreen////////////////////////////////////////////
+procedure TMusicPlayer.btnFulscreenClick(Sender: TObject);
+begin
+   if dmMediaPlayer.tblMedia['Video'] = True then
+     Begin
+        WindowsMediaPlayer1.fullScreen:=True;
+     End;
+end;
+//Skip Current Song/////////////////////////////////////////////////////////////
+procedure TMusicPlayer.btnNextClick(Sender: TObject);
+begin
+   if bpPlaylist = True then
+     Begin
+        PlayPlaylist;
+     End
+        Else
+            Begin
+               dmMediaPlayer.tblMedia.Next;
+               Play;
+            End;
+
+end;
+//Replay Previos Audio File/////////////////////////////////////////////////////
+procedure TMusicPlayer.btnPreviousClick(Sender: TObject);
+begin
+   if bpPlaylist = True then
+     Begin
+        iPlaylistPos:=iPlaylistPos-1;
+        WindowsMediaplayer1.Url:='Music/' + ArrPlaylist[iPlaylistPos];
+        pgDuration.Max:=arrSongDuration[iPlaylistPos];
+        pgDuration.Position:=0;
+        panel2.Visible:=True;
+        lblName.Caption:=ArrPlaylist[iPlaylistPos];
+     End
+        Else
+            Begin
+               dmMediaPlayer.tblMedia.Prior;
+               Play;
+            End;
+end;
+//Repeat All Songs or Stop When Database.Eof////////////////////////////////////
+procedure TMusicPlayer.btnRepeatClick(Sender: TObject);
+Var
+   bPressed: boolean;
+begin
+   if bPressed = True then
+     Begin
+        bRepeat:=True;
+     End
+        Else
+            Begin
+               bRepeat:=False;
+            End;
+
+end;
+//Rewind Current Song///////////////////////////////////////////////////////////
+procedure TMusicPlayer.btnRewindClick(Sender: TObject);
+begin
+   If bRewind = true Then
+     Begin
+        WindowsMediaPlayer1.Controls.play;
+        bRewind:= False;
+        btnForward.Enabled:=True;
+     End
+        Else
+            Begin
+               btnForward.Enabled:=False;
+               WindowsMediaPlayer1.controls.fastReverse;
+               bRewind:=True;
+            End;
+end;
+//Stop Song from playing////////////////////////////////////////////////////////
+procedure TMusicPlayer.btnStopClick(Sender: TObject);
+begin
+   ipos:=0;
+   Timer1.Enabled:=False;
+   windowsMediaPlayer1.controls.stop;
+   pgDuration.Position:=0;
+   image1.Picture.LoadFromFile( 'Gifs/splash-wallpaper-paper-color-wallpapers'
+                                + '-mickadesign-devianart-great-details-media');
+   iplayFirst:=0;
+   dmMediaPlayer.tblMedia.First;
+   SongPicked:=False;
+   if panel2.Visible = True then
+     Begin
+        Panel2.Visible:=False;
+     End;
+     BtnPrevious.Enabled:=False;
+     btnRepeat.Enabled:=False;
+     BtnNext.Enabled:=False;
+     btnForward.Enabled:=False;
+     btnRewind.Enabled:=False;
+     btnFulScreen.Enabled:=False;
+     btnStop.Enabled:=False;
+end;
+procedure TMusicPlayer.btnStopPlaylistClick(Sender: TObject);
+begin
+   btnStopPlaylist.Enabled:=False;
+   Panel2.Visible:=False;
+   pgDuration.Position:=0;
+   iPlaylistPos:=0;
+   bpPlaylist:=False;
+   btnNext.Enabled:=False;
+   btnPrevious.Enabled:=False;
+   iPlayFirst:=0;
+   WindowsMediaPlayer1.Controls.Stop;
+   pgDuration.Position:=0;
+   Timer1.Enabled:=False;
+end;
+
+//Open Other MediaFile On computer//////////////////////////////////////////////
+procedure TMusicPlayer.btnOpenClick(Sender: TObject);
+begin
+   if dmMediaPlayer.OpenDialog1.Execute then
+     Begin
+        Panel2.Visible:=True;
+        WindowsMediaPlayer1.URL:= dmMediaPlayer.OpenDialog1.FileName;
+     End;
+end;
+//FormActivate//////////////////////////////////////////////////////////////////
+procedure TMusicPlayer.FormActivate(Sender: TObject);
+begin
+   btnStopPlaylist.Enabled:=False;
+   WindowsMediaPlayer1.stretchToFit:=True;
+   pcMusicPlayer.ActivePage:=tbMusicPlayer;
+   image1.Picture.LoadFromFile( 'Gifs/splash-wallpaper-paper-color-wallpapers' +
+                                '-mickadesign-devianart-great-details-media');
+   Itel:=dmMediaPlayer.tblMedia['ID'];
+   WindowsMediaPlayer1.uiMode:='none';
+   iplayFirst:=0;
+   dmMediaplayer.tblMedia.Last;
+   IDlast:=dmMediaplayer.tblMedia['ID'];
+   dmMediaPlayer.tblMedia.First;
+   IDFirst:=dmMediaplayer.tblMedia['ID'];
+   bRepeat:=True;
+   bForward:=False;
+   bRewind:=False;
+   btnForward.Enabled:=False;
+   btnRewind.Enabled:=False;
+   btnFulScreen.Enabled:=False;
+   btnRepeat.Enabled:=False;
+   btnStop.Enabled:=False;
+   while Not dmMediaplayer.tblMedia.Eof do
+        Begin
+           dmMediaplayer.tblMedia.Next;
+           iAmount:=iamount + 1;
+        End;
+   dmMediaplayer.tblMedia.First;
+   trbVolume.Position:=WindowsMediaPlayer1.settings.volume;
+end;
+procedure TMusicPlayer.Image1Click(Sender: TObject);
+begin
+
+end;
+//Procedure Play////////////////////////////////////////////////////////////////
+procedure TMusicPlayer.Play;//Checks if song is vidoe or not and Plays songs
+begin
+   ipos:=0;
+   pgDuration.Position:=0;
+   if dmMediaplayer.tblMedia['Video'] = True then
+     Begin
+        WindowsMediaPlayer1.URL:='Videos/' + dmMediaPlayer.tblMedia['Name']
+                                 + dmMediaPlayer.tblMedia['Extention'];
+        Panel2.Visible:=True;
+        image1.Picture.LoadFromFile( 'Gifs/splash-wallpaper-paper-color'
+               + '-wallpapers-mickadesign-devianart-great-details-media');
+        btnFulScreen.Enabled:=True
+     End
+        Else
+            Begin
+               WindowsMediaPlayer1.URL:='Music/' +dmMediaPlayer.tblMedia['Name']
+                                          + dmMediaPlayer.tblMedia['Extention'];
+               image1.Picture.LoadFromFile('Gifs/'
+                                           + dmMediaPlayer.tblMedia['Gif']);
+               (Image1.Picture.Graphic as TGIFImage).Animate := True;
+               Panel2.Visible:=False;
+               btnFulScreen.Enabled:=False;
+            End;
+   pgDuration.Max:=dmMediaPlayer.tblMedia['Duration'];
+   SongPicked:=True;
+   lblName.Caption:= dmMediaPlayer.tblMedia['Name'];
+   lblDuration.Caption:=dmMediaPlayer.tblMedia['Duration'];
+   Timer1.Enabled:=True;
+end;
+//Play Playlist/////////////////////////////////////////////////////////////////
+procedure TMusicPlayer.PlayPlaylist;
+Var
+   i: integer;
+begin
+   i:=iPlaylistPos;
+   Inc(iPlaylistPos);
+   if (ArrPlaylist[iPlaylistPos] = '') then
+     Begin
+        btnStopPlaylist.Enabled:=False;
+        Panel2.Visible:=False;
+        pgDuration.Position:=0;
+        iPlaylistPos:=0;
+        bpPlaylist:=False;
+        btnNext.Enabled:=False;
+        btnPrevious.Enabled:=False;
+        iPlayFirst:=0;
+        WindowsMediaPlayer1.Controls.Stop;
+        pgDuration.Position:=0;
+        Timer1.Enabled:=False;
+     End
+        Else
+            Begin
+               WindowsMediaplayer1.Url:='Music/' + ArrPlaylist[iPlaylistPos];
+               pgDuration.Max:=arrSongDuration[iPlaylistPos];
+               pgDuration.Position:=0;
+               panel2.Visible:=True;
+               btnNext.Enabled:=True;
+               btnPrevious.Enabled:=True;
+               lblName.Caption:=ArrPlaylist[iPlaylistPos];
+            End;
+end;
+
+//Program Timer makes the Songs Continuously play///////////////////////////////
+procedure TMusicPlayer.Timer1Timer(Sender: TObject);
+begin
+   if bpPlaylist = True then
+     Begin
+        If iPlaylistPos = 0 Then
+          Begin
+             PlayPlaylist;
+          End
+             Else
+                 Begin
+                    pgDuration.Position:=pgDuration.Position+1;
+                    lblDuration.Caption:= IntToStr(pgDuration.Position)
+                                          + ' / ' + IntToStr(pgDuration.Max);
+                    if pgDuration.Position = pgDuration.Max then
+                      Begin
+                         PlayPlaylist;
+                      End;
+                 End;
+     End
+        Else
+            Begin
+               TimerCode;
+            End;
+end;
+procedure TMusicPlayer.TimerCode;
+begin
+   if bForward = True then
+     Begin
+        ipos:=ipos + 5;
+     End
+        Else
+            Begin
+               if bRewind = True then
+                 Begin
+                    ipos:=ipos - 5;
+                 End
+                    Else
+                        Begin
+                           ipos:=ipos + 1;
+                        End;
+            End;
+
+   pgDuration.Position:=ipos;
+   lblDuration.Caption:=IntToStr(ipos) + ' / ' + IntToStr(pgDuration.Max);
+   if songPicked = True then
+     Begin
+        if ipos < 0 then
+          Begin
+             bRewind:= False;
+             bforward:=False;
+             ipos:=0;
+             songpicked:=False;
+             if IDFirst = dmMediaplayer.tblMedia['ID'] then
+               Begin
+                  dmMediaplayer.tblMedia.First;
+               End
+                  Else
+                      Begin
+                         dmMediaPlayer.tblMedia.prior;
+                      End;
+             if bRepeat = True then
+               Begin
+                 play;
+               End;
+          End;
+        if ipos >= pgDuration.Max then
+          Begin
+             bForward:= False;
+             bRewind:=False;
+             ipos:=0;
+             songpicked:=False;
+             if IDLast = dmMediaplayer.tblMedia['ID'] then
+               Begin
+                  dmMediaplayer.tblMedia.First;
+               End
+                  Else
+                      Begin
+                         dmMediaPlayer.tblMedia.Next;
+                      End;
+             if bRepeat = True then
+               Begin
+                 play;
+               End;
+          End;
+     End;
+
+end;
+
+//Adjust player Volume//////////////////////////////////////////////////////////
+procedure TMusicPlayer.trbVolumeChange(Sender: TObject);
+begin
+   WindowsMediaPlayer1.settings.volume:=TrbVolume.Position;
+end;
+
+end.

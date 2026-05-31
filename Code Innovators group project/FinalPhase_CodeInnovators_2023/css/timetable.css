@@ -1,0 +1,649 @@
+/* Basic CSS Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Josefin Sans", sans-serif;
+}
+
+body {
+    font-family: "Josefin Sans", sans-serif;
+    line-height: 1.6;
+    background-color: #160330;
+}
+
+.button {
+    background: linear-gradient(to right, #7500c3, #8e30c4, #b72ed2);
+    color: #fff;
+    padding: 10px;
+    border: 0px;
+    font-size: 18px;
+}
+
+.button:hover{
+    background: linear-gradient(to left, #7500c3,#8e30c4, #b72ed2);
+    cursor: pointer;
+}
+
+.your-potential {
+    background: linear-gradient(to right, #7500c3, #8e30c4, #b72ed2);
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.content{
+    display: flex;
+    font-size: 18px;
+}
+
+.description h1 {
+    margin-bottom: 30px;
+    width: 130%;
+    font-size: 42px;
+    line-height: 52px;
+}
+
+.description {
+    margin: 160px 80px;
+    padding-top: 75px;
+    padding-bottom: auto;
+    width: 23%;
+    color: #fff;
+}
+
+.discription .p{
+    text-align: left;
+}
+
+.timetable {
+    margin-bottom: 200px; /* Adjust this value to move the footer up or down */
+    margin-top: -900px;
+    margin-left: -100px;
+    padding-top: 75px;
+    padding-bottom: auto;
+    width: 30%;
+    color: #fff;
+}
+
+.circle-img {
+    margin-left: 740px;
+    width: 260px;
+    height: 230px;
+    border-radius: 50%;
+    object-fit: auto;
+}
+
+table {
+    margin-left: 748px;
+    margin-top: auto;
+    border-collapse: collapse;
+    width: 250px;
+    line-height: 20px;
+}
+
+table, th, td {
+    padding: 8px;
+}
+
+th, td {
+    font-size: 14px;
+    text-align: center;
+    color: white;
+}
+
+td {
+    background: linear-gradient(to right, #7500c3, #8e30c4, #b72ed2);
+}
+
+th {
+    background: linear-gradient(to right, #7500c3, #8e30c4, #b72ed2);
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.button2 {
+    margin-left: 810px;
+    margin-top: 20px;
+    font-weight: bold;
+    background: linear-gradient(to right, #7500c3, #8e30c4, #b72ed2);
+    color: #fff;
+    padding: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border: 0px;
+    font-size: 15px;
+    border-radius: 30px;
+}
+
+.button2:hover{
+    background: linear-gradient(to left, #7500c3,#8e30c4, #b72ed2);
+    cursor: pointer;
+}
+
+.ctu-border-img {
+    margin-top: 20px;
+    margin-left: 747px;
+    width: 250px;
+    height: 100px;
+    object-fit: auto;
+}
+
+.knowledge1 {
+    margin-top: 20px;
+    margin-left: 747px;
+    width: 250px;
+    height: 100px;
+    object-fit: auto;
+    color: #fff;
+}
+
+.knowledge {
+    background: linear-gradient(to right, #7500c3, #8e30c4, #b72ed2);
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+.vertical-line {
+    margin-top: 250px;
+    width: 3px; /* Thickness of the line */
+    background-color: #fff; /* Color of the line */
+    height: 970px; /* Full height of the .timetable container */
+    position: absolute; /* Absolute positioning */
+    top: 0; /* Align with the top of the .timetable container */
+    left: 930px; /* Position it to the right of the table; adjust value as needed */
+}
+
+.profile-img {
+    position: absolute;
+    top: -990px; /* or another value to move it higher */
+    left: 940px;
+    width: 330px;
+    height: 330px;
+    border-radius: 50%;
+}
+
+
+.programming_foundation {
+    position: relative;
+}
+
+.pf {
+    position: absolute;
+    top: -1100px;
+    left: 980px;
+    color: white;
+    font-size: 20px;
+}
+
+.the3s1 h1{
+    position: absolute;
+    top: -980px;
+    left: 1280px;
+    color: rgb(234, 0, 255);
+    font-size: 40px;
+}
+
+.the3s1 p {
+    position: absolute;
+    top: -900px;
+    left: 1280px;
+    color: white;
+    font-size: 12px;
+    width: 150px;
+}
+
+.the3s2 h1{
+    position: absolute;
+    top: -980px;
+    left: 1450px;
+    color: rgb(234, 0, 255);
+    font-size: 40px;
+}
+
+.the3s2 p {
+    position: absolute;
+    top: -900px;
+    left: 1450px;
+    color: white;
+    font-size: 10px;
+    width: 150px;
+}
+
+.line3 {
+    position: absolute;
+    top: -920px;
+    left: 1280px;
+    width: 328px;
+}
+
+.circlewords {
+    position: absolute;
+    top: -1022px;
+    left: 1638px;
+    color: white;
+    font-size: 10px;
+    width: 150px;
+}
+
+.circlewords p {
+    position: absolute;
+    text-align: center;
+    color: white;
+    font-size: 12px;
+    width: 150px;
+    top: 30%;
+    right: -25px;
+}
+
+.t-bold{
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.important_dates h1 {
+    position: absolute;
+    top: -780px;
+    left: 1440px;
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+}
+
+/* HERE IS THE BOXES THAT US GOING TE BE USED */
+.ellipse-1 p {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: 4px;
+    bottom: -2px;
+    height: 100%;
+    color: white;
+}
+
+.rectangle-1 p {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: 25px;
+    height: 100%;
+    color: white;
+    font-size: 13px;
+}
+
+.purpbox-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    grid-template-rows: repeat(5, auto); /* Five rows */
+    grid-column-gap: 280px; /* Space between boxes */
+    grid-row-gap: 120px; /* Space between rows */
+    position: absolute;
+    top: -720px;  
+    left: 1293px;
+}
+
+.purpbox {
+    width: 167px;
+    height: 67px;
+}
+
+.frame-1 {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.rectangle-1 {
+    background: linear-gradient(131.48deg, rgba(204, 0, 255, 1) 0%, rgba(132, 0, 221, 1) 100%);
+    border-radius: 25px;
+    width: 138px;
+    height: 67px;
+    position: absolute;
+    left: 29px;
+    top: 0px;
+}
+
+.ellipse-1 {
+    background: linear-gradient(133.88deg, rgba(204, 0, 255, 1) 0%, rgba(132, 0, 221, 1) 100%);
+    border-radius: 50%;
+    border-style: solid;
+    border-color: #000000;
+    border-width: 1px;
+    width: 52px;
+    height: 50px;
+    position: absolute;
+    left: 0px;
+    top: 8px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.ellipse-2 {
+    background: linear-gradient(133.88deg, rgba(204, 0, 255, 1) 0%, rgba(132, 0, 221, 1) 100%);
+    border-radius: 50%;
+    border-style: solid;
+    border-color: #000000;
+    border-width: 1px;
+    width: 52px;
+    height: 50px;
+    position: absolute;
+    left: 1127px;
+    top: -398px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.ellipse-3 {
+    background: linear-gradient(133.88deg, rgba(204, 0, 255, 1) 0%, rgba(132, 0, 221, 1) 100%);
+    border-radius: 50%;
+    border-style: solid;
+    border-color: #000000;
+    border-width: 1px;
+    width: 52px;
+    height: 50px;
+    position: absolute;
+    left: 1173px;
+    top: -290px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.ellipse-4 {
+    background: linear-gradient(133.88deg, rgba(204, 0, 255, 1) 0%, rgba(132, 0, 221, 1) 100%);
+    border-radius: 50%;
+    border-style: solid;
+    border-color: #000000;
+    border-width: 1px;
+    width: 52px;
+    height: 50px;
+    position: absolute;
+    left: 1008px;
+    top: -398px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.ellipse-5 {
+    background: linear-gradient(133.88deg, rgba(204, 0, 255, 1) 0%, rgba(132, 0, 221, 1) 100%);
+    border-radius: 50%;
+    border-style: solid;
+    border-color: #000000;
+    border-width: 1px;
+    width: 52px;
+    height: 50px;
+    position: absolute;
+    left: 1067px;
+    top: -462px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.ellipse-6 {
+    background: linear-gradient(133.88deg, rgba(204, 0, 255, 1) 0%, rgba(132, 0, 221, 1) 100%);
+    border-radius: 50%;
+    border-style: solid;
+    border-color: #000000;
+    border-width: 1px;
+    width: 52px;
+    height: 50px;
+    position: absolute;
+    left: 1116px;
+    top: -200px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.ellipse-7{
+    background: linear-gradient(133.88deg, rgba(204, 0, 255, 1) 0%, rgba(132, 0, 221, 1) 100%);
+    border-radius: 50%;
+    border-style: solid;
+    border-color: #000000;
+    border-width: 1px;
+    width: 52px;
+    height: 50px;
+    position: absolute;
+    left: 1026px;
+    top: -200px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+/* The Lines */
+
+.hr1{
+    position: absolute;
+    top: -687px;
+    left: 1191px;
+    width: 102.5px;
+    background-color: white;
+    height: 3px;
+    z-index: 10;
+}
+
+.hr2{
+    position: absolute;
+    top: -89px;
+    left: 1242px;
+    width: 282px;
+    background-color: white;
+    height: 3px;
+    z-index: 10;
+}
+
+.hr3{
+    position: absolute;
+    top: -327.67185px;
+    left: 1200px;
+    width: 44px;
+    background-color: white;
+    height: 3px;
+    z-index: 10;
+}
+
+.hr4{
+    position: absolute;
+    top: -374px;
+    left: 1176px;
+    width: 23px;
+    background-color: white;
+    height: 3px;
+    z-index: 10;
+}
+
+.hr5{
+    position: absolute;
+    top: -507px;
+    left: 1151px;
+    width: 90px;
+    background-color: white;
+    height: 3px;
+    z-index: 10;
+}
+
+.hr6{
+    position: absolute;
+    top: -245px;
+    left: 1050px;
+    width: 90px;
+    background-color: white;
+    height: 3px;
+    z-index: 10;
+}
+
+.vertical-line1 {
+    margin-top: -687px; /* Adjusted to align with the top purple circle */
+    width: 3px; /* Thickness of the line */
+    background-color: white; /* Color of the line */
+    height: 600px; /* Extended height to touch the bottom purple circle */
+    position: absolute; /* Keep the line positioned relative to the page */
+    top: 0; /* Align with the top of the page */
+    left: 1520px; /* Adjust to align the line with the purple circles */
+    z-index: 10; /* Ensure the line appears above other elements */
+}
+
+.vertical-line2 {
+    margin-top: -190px; /* Adjusted to align with the top purple circle */
+    width: 3px; /* Thickness of the line */
+    background-color: white; /* Color of the line */
+    height: 240px; /* Extended height to touch the bottom purple circle */
+    position: absolute; /* Keep the line positioned relative to the page */
+    top: -137px; /* Align with the top of the page */
+    left: 1240px; /* Adjust to align the line with the purple circles */
+    z-index: 10; /* Ensure the line appears above other elements */
+}
+
+.vertical-line3 {
+    margin-top: -190px; /* Adjusted to align with the top purple circle */
+    width: 3px; /* Thickness of the line */
+    background-color: white; /* Color of the line */
+    height: 270px; /* Extended height to touch the bottom purple circle */
+    position: absolute; /* Keep the line positioned relative to the page */
+    top: -477px; /* Align with the top of the page */
+    left: 1152px; /* Adjust to align the line with the purple circles */
+    z-index: 10; /* Ensure the line appears above other elements */
+}
+
+.vertical-line4 {
+    margin-top: -40px; /* Adjusted to align with the top purple circle */
+    width: 3px; /* Thickness of the line */
+    background-color: white; /* Color of the line */
+    height: 85px; /* Extended height to touch the bottom purple circle */
+    position: absolute; /* Keep the line positioned relative to the page */
+    top: -333px; /* Align with the top of the page */
+    left: 1200px; /* Adjust to align the line with the purple circles */
+    z-index: 10; /* Ensure the line appears above other elements */
+}
+
+.vertical-line5{
+    margin-top: -40px; /* Adjusted to align with the top purple circle */
+    width: 3px; /* Thickness of the line */
+    background-color: white; /* Color of the line */
+    height: 124px; /* Extended height to touch the bottom purple circle */
+    position: absolute; /* Keep the line positioned relative to the page */
+    top: -528px; /* Align with the top of the page */
+    left: 1240px; /* Adjust to align the line with the purple circles */
+    z-index: 10; /* Ensure the line appears above other elements */
+}
+
+.vertical-line6{
+    margin-top: -40px; /* Adjusted to align with the top purple circle */
+    width: 3px; /* Thickness of the line */
+    background-color: white; /* Color of the line */
+    height: 200px; /* Extended height to touch the bottom purple circle */
+    position: absolute; /* Keep the line positioned relative to the page */
+    top: -620px; /* Align with the top of the page */
+    left: 1090px; /* Adjust to align the line with the purple circles */
+    z-index: 10; /* Ensure the line appears above other elements */
+}
+
+.vertical-line7{
+    margin-top: -40px; /* Adjusted to align with the top purple circle */
+    width: 3px; /* Thickness of the line */
+    background-color: white; /* Color of the line */
+    height: 280px; /* Extended height to touch the bottom purple circle */
+    position: absolute; /* Keep the line positioned relative to the page */
+    top: -636px; /* Align with the top of the page */
+    left: 1030px; /* Adjust to align the line with the purple circles */
+    z-index: 10; /* Ensure the line appears above other elements */
+}
+
+.vertical-line8{
+    margin-top: -40px; /* Adjusted to align with the top purple circle */
+    width: 3px; /* Thickness of the line */
+    background-color: white; /* Color of the line */
+    height: 170px; /* Extended height to touch the bottom purple circle */
+    position: absolute; /* Keep the line positioned relative to the page */
+    top: -374px; /* Align with the top of the page */
+    left: 1090px; /* Adjust to align the line with the purple circles */
+    z-index: 10; /* Ensure the line appears above other elements */
+}
+
+.vertical-line9{
+    margin-top: -40px; /* Adjusted to align with the top purple circle */
+    width: 3px; /* Thickness of the line */
+    background-color: white; /* Color of the line */
+    height: 46px; /* Extended height to touch the bottom purple circle */
+    position: absolute; /* Keep the line positioned relative to the page */
+    top: -204px; /* Align with the top of the page */
+    left: 1050px; /* Adjust to align the line with the purple circles */
+    z-index: 10; /* Ensure the line appears above other elements */
+}
+
+.vertical-line10{
+    margin-top: -40px; /* Adjusted to align with the top purple circle */
+    width: 3px; /* Thickness of the line */
+    background-color: white; /* Color of the line */
+    height: 46px; /* Extended height to touch the bottom purple circle */
+    position: absolute; /* Keep the line positioned relative to the page */
+    top: -204px; /* Align with the top of the page */
+    left: 1139px; /* Adjust to align the line with the purple circles */
+    z-index: 10; /* Ensure the line appears above other elements */
+}
+
+.horizontal-lines-container {
+    display: grid;
+    grid-template-rows: repeat(5, 3px); /* Five rows for horizontal lines */
+    grid-gap: 117.5px; /* Space between lines, adjust if needed */
+    position: absolute;
+    top: -690px; /* Adjust to align with the top line */
+    left: 1522px; /* Adjust to align with the purple circles */
+    z-index: 10; /* Ensure the lines appear above other elements */
+}
+
+.horizontal-line1 {
+    width: 52px; /* Width of the line */
+    background-color: white; /* Color of the line */
+    height: 3px; /* Thickness of the line */
+    grid-column: 1 / -1; /* Span the line across all columns */
+}
+
+.horizontal-lines-container2 {
+    display: grid;
+    grid-template-rows: repeat(4, 3px); /* Five rows for horizontal lines */
+    grid-gap: 117.5px; /* Space between lines, adjust if needed */
+    position: absolute;
+    top: -568px; /* Adjust to align with the top line */
+    left: 1243px; /* Adjust to align with the purple circles */
+    z-index: 10; /* Ensure the lines appear above other elements */
+}
+
+.horizontal-line2 {
+    width: 52px; /* Width of the line */
+    background-color: white; /* Color of the line */
+    height: 3px; /* Thickness of the line */
+    grid-column: 1 / -1; /* Span the line across all columns */
+}
+
+/* Creating the text for the boxses */
+.texts .subject {
+    position: absolute;
+    color: white;
+    z-index: 10;
+}
+
+.cwd {
+    position: absolute;
+    left: 1073px;
+    bottom: 423px;
+}
+
+.cwd-html {
+    position: absolute;
+    left: 1120px;
+    bottom: 162px;
+}
+
+.cwd-css {
+    position: absolute;
+    left: 1034px;
+    bottom: 162px;
+}
+
+.cf {
+    position: absolute;
+    left: 1023px;
+    bottom: 360px;
+}
+
+.ena {
+    position: absolute;
+    left: 1136px;
+    bottom: 360px;
+}
+
+.rd {
+    position: absolute;
+    left: 1187px;
+    bottom: 252px;
+}

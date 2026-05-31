@@ -1,0 +1,18 @@
+program wmpMusic_P;
+
+uses
+  Vcl.Forms,
+  wmpMusic_U in 'wmpMusic_U.pas' {frmMusicPlayer},
+  dmMusicPlayer_U in 'dmMusicPlayer_U.pas' {dmMusicplayer: TDataModule},
+  Add_Delete_U in 'Add_Delete_U.pas' {frmNewSongs};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TfrmMusicPlayer, frmMusicPlayer);
+  Application.CreateForm(TdmMusicplayer, dmMusicplayer);
+  Application.CreateForm(TfrmNewSongs, frmNewSongs);
+  Application.Run;
+end.

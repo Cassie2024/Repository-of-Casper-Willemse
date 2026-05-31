@@ -1,0 +1,40 @@
+object dmMediaPlayer: TdmMediaPlayer
+  OldCreateOrder = False
+  Height = 61
+  Width = 366
+  object ADOConnection1: TADOConnection
+    Connected = True
+    ConnectionString = 
+      'Provider=Microsoft.Jet.OLEDB.4.0;User ID=Admin;Data Source=Datab' +
+      'ase6.mdb;Mode=Share Deny None;Persist Security Info=False;Jet OL' +
+      'EDB:System database="";Jet OLEDB:Registry Path="";Jet OLEDB:Data' +
+      'base Password="";Jet OLEDB:Engine Type=5;Jet OLEDB:Database Lock' +
+      'ing Mode=1;Jet OLEDB:Global Partial Bulk Ops=2;Jet OLEDB:Global ' +
+      'Bulk Transactions=1;Jet OLEDB:New Database Password="";Jet OLEDB' +
+      ':Create System Database=False;Jet OLEDB:Encrypt Database=False;J' +
+      'et OLEDB:Don'#39't Copy Locale on Compact=False;Jet OLEDB:Compact Wi' +
+      'thout Replica Repair=False;Jet OLEDB:SFP=False'
+    LoginPrompt = False
+    Mode = cmShareDenyNone
+    Provider = 'Microsoft.Jet.OLEDB.4.0'
+    Left = 88
+    Top = 8
+  end
+  object tblMedia: TADOTable
+    Active = True
+    Connection = ADOConnection1
+    CursorType = ctStatic
+    TableName = 'Table1'
+    Left = 16
+    Top = 8
+  end
+  object DataSource1: TDataSource
+    DataSet = tblMedia
+    Left = 168
+    Top = 8
+  end
+  object OpenDialog1: TOpenDialog
+    Left = 240
+    Top = 8
+  end
+end

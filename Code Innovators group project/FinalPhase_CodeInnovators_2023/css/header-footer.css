@@ -1,0 +1,149 @@
+/* HEADER */
+
+/* Container this contains the navbar, text, and image */
+.container {
+    width: 92%;
+    margin: auto;
+    overflow: hidden;
+    position: relative;
+}
+
+.hero {
+    background: linear-gradient(to bottom, rgba(151, 53, 204, 0.236), rgba(81, 28, 124, 0.447), transparent);
+    color: #fff;
+    margin: 40px;
+    margin-bottom: 0;
+    text-align: center;
+    position: abso;
+    z-index: -1;
+    border-radius: 20px;
+    box-shadow: 0 -100px 50px #160330 inset;
+}
+
+/* Navbar styling */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    color: #fff;
+}
+
+.navlinks a {
+    pointer-events: auto; /* Ensure links can be clicked */
+    text-decoration: none;
+    color: white; /* Ensure the text stays white on hover */
+}
+
+.navlinks {
+    display: contents;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    list-style: none;
+}
+
+.navlinks li a {
+    color: white; /* Set the link text color to white */
+    text-decoration: none; /* Remove underline from links */
+    padding: 10px 15px; /* Add some padding around the links */
+}
+
+.navlinks li a:hover {
+    background: linear-gradient(to right, #7500c3, #8e30c4, #b72ed2);
+    border-radius: 30px;
+    color: white; /* Ensure the text stays white on hover */
+    cursor: pointer;
+}
+
+#login-button {
+    width: 125px;
+    border-radius: 30px;
+    height: 50px;
+}
+
+.logo {
+    padding: 0;
+    display: flex;
+    flex-basis: 300px;
+    height: 132px;
+    justify-content: left;
+}
+
+/* FOOTER */
+
+.footer-container {
+    border-top: 2px solid #fff;
+    display: flex;
+    padding: 40px 0;
+    width: 90%;
+    margin: auto;
+}
+
+.footer-navlinks {
+    width: 33%;
+    display: flex;
+    color: #fff;
+    align-items: center;
+    list-style: none;
+    font-size: 20px;
+}
+
+.footer-navlinks li a{
+    text-decoration: none;
+}
+
+.footer-navlinks li a:hover {
+    background: linear-gradient(to right, #7500c3, #8e30c4, #b72ed2);
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    cursor: pointer;
+}
+
+.footer-navlinks .left-links, .footer-navlinks .right-links {
+    padding-left: 10px;
+}
+
+.footer-navlinks .right-links {
+    margin-left: 50px;
+}
+
+.footer-navlinks li a{
+    padding: 5px;
+    color: white;
+}
+
+.footer-logo {
+    width: 33%;
+    height: 130px;
+    display: flex;
+    justify-content: center;
+}
+
+.socials {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    padding: 10px;
+    font-size: 40px;
+}
+
+.socials i {
+    color: #fff;
+    background: linear-gradient(to left, #7500c3, #8e30c4, #b72ed2);
+    padding: 15px;
+    border-radius: 10px;
+    margin-left: 30px;
+}
+
+
+.footer-right {
+    width: 33%;
+}
+
+.copy {
+    color: #fff;
+    margin-top: 20px;
+    margin-right: 10px;
+    text-align: right;
+}

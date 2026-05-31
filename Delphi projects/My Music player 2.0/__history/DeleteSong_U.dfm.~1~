@@ -1,0 +1,41 @@
+object frmDelete: TfrmDelete
+  Left = 0
+  Top = 0
+  Caption = 'Delete'
+  ClientHeight = 231
+  ClientWidth = 505
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object DBGrid1: TDBGrid
+    Left = 0
+    Top = 0
+    Width = 505
+    Height = 176
+    Align = alClient
+    TabOrder = 0
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+  end
+  object Panel1: TPanel
+    Left = 0
+    Top = 176
+    Width = 505
+    Height = 55
+    Align = alBottom
+    BevelInner = bvRaised
+    BevelKind = bkSoft
+    BevelOuter = bvLowered
+    Caption = 'Panel1'
+    TabOrder = 1
+  end
+end
