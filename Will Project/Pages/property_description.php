@@ -116,7 +116,7 @@ if ($target_agent) {
     <link rel="stylesheet" href="../css/main_styles.css">
     <link rel="stylesheet" href="../css/landing_page.css">
     <link rel="stylesheet" href="../css/pty_description.css">
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDq-xFOUlXXsIvMgdwv410toP8dBVk2rk&libraries=earth"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=*****&libraries=earth"></script>
     <style>
         #map {
             height: 100%;
